@@ -1,0 +1,27 @@
+
+/**
+ * base de données
+**/
+
+// Créer un objet
+
+Personne(nom='XXX', prenom='YYY', email='aa@tns', telephone='0600000', poste='respo').save()
+
+// Lister tous les objets du modèle Personne
+
+Personne.objects.all()
+
+// Obtenir un objet du modèlegal
+
+Personne.objects.get(pk=2),
+Personne.objects.get(nom='Maeckereel')
+
+// Delete un objet
+
+Personne.objects.get(pk=2).delete()
+
+// Retourne tous les objets qui matchent
+
+Personne.objects.filter(nom='Maeckereel'),
+Personne.objects.filter(prenom__startswith="p")
+Personne.objects.filter(prenom__icontains="pierre")
