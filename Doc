@@ -11,7 +11,7 @@ Personne(nom='XXX', prenom='YYY', email='aa@tns', telephone='0600000', poste='re
 
 Personne.objects.all()
 
-// Obtenir un objet du modèlegal
+// Obtenir un objet du modèle
 
 Personne.objects.get(pk=2),
 Personne.objects.get(nom='Maeckereel')
