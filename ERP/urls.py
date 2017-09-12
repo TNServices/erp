@@ -21,9 +21,8 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^logout/$', LogoutView.as_view()),
     url(r'^$', LoginView.as_view()),
 #    url(r'^home/$', login_required(TemplateView.as_view(template_name='home/index.html'))),
-    url(r'^home/$', login_required(home)),
+    url(r'^home/$', login_required(HomeView.as_view())),
     url(r'loginFail/$', logFail),
 ]
