@@ -1,3 +1,7 @@
+// lancer le serveur
+
+
+gunicorn ERP.wsgi:application --bind 0.0.0.0:8000
 
 /**
  * base de données
