@@ -24,5 +24,7 @@ urlpatterns = [
     url(r'^$', LoginView.as_view()),
 #    url(r'^home/$', login_required(TemplateView.as_view(template_name='home/index.html'))),
     url(r'^home/$', login_required(HomeView.as_view())),
+    url(r'^index/$', login_required(IndexView.as_view())),
+    url(r'^account/$', login_required(AccountView.as_view())),
     url(r'loginFail/$', logFail),
 ]

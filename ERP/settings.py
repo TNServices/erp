@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Login config
 
-LOGIN_REDIRECT_URL = 'home/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/'
 
 

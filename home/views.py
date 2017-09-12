@@ -8,6 +8,23 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from models import *
 
+class IndexView(TemplateView):
+    template_name = 'front/index.html'
+
+class AccountView(TemplateView):
+    template_name = 'front/account.html'
+
+    def post(self, request):
+        telephone = request.POST.get('Téléphone', False)
+
+        if request.user.is_authenticated():
+            email = request.user.username
+        user = Personne.objects.get(email = email)
+        user.telephone = telephone
+        user.save()
+
+        return HttpResponse("Numéro de Téléphone modifié")
+
 class HomeView(TemplateView):
     template_name = 'home/home.html'
 
@@ -55,7 +72,7 @@ def logFail(request):
 
 class LoginView(TemplateView):
 
-  template_name = 'front/index.html'
+  template_name = 'front/login.html'
 
   def post(self, request, **kwargs):
 
@@ -64,6 +81,6 @@ class LoginView(TemplateView):
     user = authenticate(username=username, password=password)
     if user is not None and user.is_active:
         login(request, user)
-        return HttpResponseRedirect( settings.LOGIN_REDIRECT_URL )
+        return HttpResponseRedirect( 'index/' )
 
     return HttpResponseRedirect('loginFail/')
