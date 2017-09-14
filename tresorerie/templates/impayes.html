@@ -1,17 +1,29 @@
-<h1>Liste des impayés à  ce jour</h1>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
+  </head>
 
-<ul>
-{% for impaye in impayes %}
-    <li>
-      Client : {{impaye.prenomClient}} {{impaye.nomClient}}
-      Date : {{impaye.date}}
-      </br>
-      Pages couleur : {{impaye.nombrePagesCouleur}},
-      Pages noir/blanc : {{impaye.nombrePagesNB}},
-      Reliure : {{impaye.reliure}}
-      </br>
-      Prix à payer : {{impaye.prix}}
-    </li>
-    </br>
-{% endfor %}
-</ul>
+  <body>
+
+    <h1>Liste des impayés à  ce jour</h1>
+
+    <ul>
+    {% for impaye in impayes %}
+        <li>
+          Client : {{impaye.prenomClient}} {{impaye.nomClient}}
+          Date : {{impaye.date}}
+          </br>
+          Pages couleur : {{impaye.nombrePagesCouleur}},
+          Pages noir/blanc : {{impaye.nombrePagesNB}},
+          Reliure : {{impaye.reliure}}
+          </br>
+          Prix à payer : {{impaye.prix}}
+        </li>
+        </br>
+    {% endfor %}
+    </ul>
+  </body>
+</html>

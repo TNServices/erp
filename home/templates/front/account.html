@@ -1,22 +1,35 @@
-<p>
-  Si vous souhaitez changer votre mot de passe :
-</p>
-<form method="post"  role="form" action="">
-  {% csrf_token %}
-  <input type="password" name="oldPassword" placeholder="Ancien mot de passe"/>
-  <input type="password" name="newPassword1" placeholder="nouveau mot de passe"/>
-  <input type="password" name="newPassword2" placeholder="Retapez le mot de passe"/>
-  <input type="hidden" name="password"/>
-  <input type="submit" value="Changer le mot de passe"/>
-</form>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
+  </head>
 
-<p>
-  Pour changer le numéro de téléphone :
-</p>
+  <body>
 
-<form method = "post" role="form" action="">
-  {% csrf_token %}
-  <input type="text" name="Téléphone" placeholder="Téléphone"/>
-  <input type="hidden" name="telephone"/>
-  <input type="submit" value="Modifier"/>
-</form>
+    <p>
+      Si vous souhaitez changer votre mot de passe :
+    </p>
+    <form method="post"  role="form" action="">
+      {% csrf_token %}
+      <input type="password" name="oldPassword" placeholder="Ancien mot de passe"/>
+      <input type="password" name="newPassword1" placeholder="nouveau mot de passe"/>
+      <input type="password" name="newPassword2" placeholder="Retapez le mot de passe"/>
+      <input type="hidden" name="password"/>
+      <input type="submit" value="Changer le mot de passe"/>
+    </form>
+
+    <p>
+      Pour changer le numéro de téléphone :
+    </p>
+
+    <form method = "post" role="form" action="">
+      {% csrf_token %}
+      <input type="text" name="Téléphone" placeholder="Téléphone"/>
+      <input type="hidden" name="telephone"/>
+      <input type="submit" value="Modifier"/>
+    </form>
+
+  </body>
+</html>

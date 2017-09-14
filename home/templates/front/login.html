@@ -1,7 +1,17 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
+  </head>
 
-<form method="post"  role="form" action="">
-{% csrf_token %}
-<input type="text" name="username" placeholder="Utilisateur"/>
-<input type="password" name="password" placeholder="Mot de passe"/>
-<input type="submit" value="login" />
-</form>
+  <body>
+    <form method="post"  role="form" action="">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Utilisateur"/>
+    <input type="password" name="password" placeholder="Mot de passe"/>
+    <input type="submit" value="login" />
+    </form>
+  </body>
+</html>

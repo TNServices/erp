@@ -1,7 +1,18 @@
-<a href="/home/">Page d'accueil</a>
-<br/>
-<a href="/account/">Modification des informations du compte</a>
-<br/>
-<a href="/impressions/">Gestion des impressions et reliures</a>
-<br/>
-<a href="/tresorerie/">Interface administration de la trésorerie</a>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
+  </head>
+
+  <body>
+    <a href="/home/">Page d'accueil</a>
+    <br/>
+    <a href="/account/">Modification des informations du compte</a>
+    <br/>
+    <a href="/impressions/">Gestion des impressions et reliures</a>
+    <br/>
+    <a href="/tresorerie/">Interface administration de la trésorerie</a>
+  </body>
+</html>

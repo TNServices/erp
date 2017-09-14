@@ -1,13 +1,25 @@
-<p>
-  Page d'accueil de l'ERP TNS </br> </br>
-  {{prenom}} {{nom}} </br>
-  {{email}} </br>
-  {{telephone}} </br>
-  {{poste}}
-</p>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
+  </head>
+
+  <body>
+    <p>
+      Page d'accueil de l'ERP TNS </br> </br>
+      {{prenom}} {{nom}} </br>
+      {{email}} </br>
+      {{telephone}} </br>
+      {{poste}}
+    </p>
 
 
-<p>
-  Si vous voulez changer les informations de votre compte,
-  <a href = '/account/'>cliquez ici</a>
-</p>
+    <p>
+      Si vous voulez changer les informations de votre compte,
+      <a href = '/account/'>cliquez ici</a>
+    </p>
+
+  </body>
+</html>
