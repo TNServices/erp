@@ -1,0 +1,22 @@
+<h1>Liste des impressions de {{prenom}} {{nom}}</h1>
+
+<ul>
+{% for transaction in transactions %}
+    <li>
+      Date : {{transaction.date}}
+      </br>
+      Pages couleur : {{transaction.nombrePagesCouleur}},
+      Pages noir/blanc : {{transaction.nombrePagesNB}},
+      Reliure : {{transaction.reliure}}
+      </br>
+      Prix à payer : {{transaction.prix}}
+
+      <form method="post" role="form" action="">
+        {% csrf_token %}
+        <input type="hidden" value={{transaction.id}} name = "id"/>
+        <input type="submit" value="Valider le paiement" name="debts"/>
+      </form>
+    </li>
+    </br>
+{% endfor %}
+</ul>

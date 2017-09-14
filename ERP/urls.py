@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from home.views import *
+from impression.views import *
+from tresorerie.views import *
 from django.contrib.auth.decorators import login_required
 
 
@@ -26,5 +28,10 @@ urlpatterns = [
     url(r'^home/$', login_required(HomeView.as_view())),
     url(r'^index/$', login_required(IndexView.as_view())),
     url(r'^account/$', login_required(AccountView.as_view())),
-    url(r'loginFail/$', logFail),
+    url(r'^loginFail/$', logFail),
+
+    url(r'^impressions/$', login_required(ImpressionView.as_view())),
+
+    url(r'^tresorerie/$', login_required(TresorerieView.as_view())),
+    url(r'impayes/$', login_required(ImpayesView.as_view()))
 ]

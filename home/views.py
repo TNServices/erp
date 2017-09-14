@@ -15,15 +15,35 @@ class AccountView(TemplateView):
     template_name = 'front/account.html'
 
     def post(self, request):
-        telephone = request.POST.get('Téléphone', False)
 
-        if request.user.is_authenticated():
-            email = request.user.username
-        user = Personne.objects.get(email = email)
-        user.telephone = telephone
-        user.save()
+        if 'password' in request.POST:
 
-        return HttpResponse("Numéro de Téléphone modifié")
+            oldPassword = request.POST.get('oldPassword', False)
+            newPassword1 = request.POST.get('newPassword1', False)
+            newPassword2 = request.POST.get('newPassword2', False)
+
+            user = authenticate(username=request.user.username, password=oldPassword)
+            if user is not None and user.is_active:
+                if newPassword1 == newPassword2:
+                    request.user.set_password(newPassword1)
+                    request.user.save()
+                    return HttpResponse("Mot de passe mis à jour")
+                else :
+                    return HttpResponse("Erreur. Les deux mots de passe ne correspondent pas")
+            else:
+                return HttpResponse("Erreur. L'ancien mot de passe ne correspond pas au compte")
+
+        elif 'telephone' in request.POST :
+
+            telephone = request.POST.get('Téléphone', False)
+
+            if request.user.is_authenticated():
+                email = request.user.username
+            user = Personne.objects.get(email = email)
+            user.telephone = telephone
+            user.save()
+
+            return HttpResponse("Numéro de Téléphone modifié")
 
 class HomeView(TemplateView):
     template_name = 'home/home.html'
@@ -49,24 +69,6 @@ class HomeView(TemplateView):
           'email' : get_email(), 'telephone' : get_telephone(), 'poste' : get_poste()})
 
 
-
-    def post(self, request, **kwargs):
-        oldPassword = request.POST.get('oldPassword', False)
-        newPassword1 = request.POST.get('newPassword1', False)
-        newPassword2 = request.POST.get('newPassword2', False)
-
-        user = authenticate(username=request.user.username, password=oldPassword)
-        if user is not None and user.is_active:
-            if newPassword1 == newPassword2:
-                request.user.set_password(newPassword1)
-                request.user.save()
-                return HttpResponse("Mot de passe mis à jour")
-            else :
-                return HttpResponse("Erreur. Les deux mots de passe ne correspondent pas")
-        else:
-            return HttpResponse("Erreur. L'ancien mot de passe ne correspond pas au compte")
-
-
 def logFail(request):
     return HttpResponse("Erreur d'authentification. \n Identifiant ou mot de passe incorrect")
 
@@ -81,6 +83,6 @@ class LoginView(TemplateView):
     user = authenticate(username=username, password=password)
     if user is not None and user.is_active:
         login(request, user)
-        return HttpResponseRedirect( 'index/' )
+        return HttpResponseRedirect( '/index/' )
 
     return HttpResponseRedirect('loginFail/')

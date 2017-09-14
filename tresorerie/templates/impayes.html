@@ -1,0 +1,17 @@
+<h1>Liste des impayés à  ce jour</h1>
+
+<ul>
+{% for impaye in impayes %}
+    <li>
+      Client : {{impaye.prenomClient}} {{impaye.nomClient}}
+      Date : {{impaye.date}}
+      </br>
+      Pages couleur : {{impaye.nombrePagesCouleur}},
+      Pages noir/blanc : {{impaye.nombrePagesNB}},
+      Reliure : {{impaye.reliure}}
+      </br>
+      Prix à payer : {{impaye.prix}}
+    </li>
+    </br>
+{% endfor %}
+</ul>

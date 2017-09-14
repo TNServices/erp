@@ -3,10 +3,11 @@
 </p>
 <form method="post"  role="form" action="">
   {% csrf_token %}
-  <input type="password" name="oldPassword" placeholder="Ancien mot de passe">
-  <input type="password" name="newPassword1" placeholder="nouveau mot de passe">
-  <input type="password" name="newPassword2" placeholder="Retapez le mot de passe">
-  <input type="submit" value="Changer le mot de passe" />
+  <input type="password" name="oldPassword" placeholder="Ancien mot de passe"/>
+  <input type="password" name="newPassword1" placeholder="nouveau mot de passe"/>
+  <input type="password" name="newPassword2" placeholder="Retapez le mot de passe"/>
+  <input type="hidden" name="password"/>
+  <input type="submit" value="Changer le mot de passe"/>
 </form>
 
 <p>
@@ -15,6 +16,7 @@
 
 <form method = "post" role="form" action="">
   {% csrf_token %}
-  <input type="text" name="Téléphone" placeholder="Téléphone">
-  <input type="submit" value="Modifier" />
+  <input type="text" name="Téléphone" placeholder="Téléphone"/>
+  <input type="hidden" name="telephone"/>
+  <input type="submit" value="Modifier"/>
 </form>

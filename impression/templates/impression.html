@@ -1,0 +1,31 @@
+<h1>Gestion des impressions et reliures</h1>
+
+<form method="post"  role="form" action="">
+  {% csrf_token %}
+  <p>
+    <input type="text" name="date" placeholder="date"/>
+    Format : AAAA-MM-JJ
+  </p>
+  <input type="text" name="nomClient" placeholder="nomClient"/>
+  <input type="text" name="prenomClient" placeholder="prenomClient"/>
+  <br/>
+  <input type="text" name="nomFournisseur" placeholder="nomFournisseur"/>
+  <input type="text" name="prenomFournisseur" placeholder="prenomFournisseur"/>
+  <br/>
+  <input type="text" name="nombrePagesCouleur" placeholder="nombrePagesCouleur"/>
+  <input type="text" name="nombrePagesNB" placeholder="nombrePagesNB"/>
+  <br/>
+  <input type="text" name="reliure" placeholder="reliure"/>
+  <input type="text" name="estPaye" placeholder="estPaye"/>
+  <br/>
+  <input type="submit" value="valider" name="addToDatabase"/>
+</form>
+
+<br/>
+<p>Valider le paiement d'une précédente impression</p>
+<form method="post" role="form" action="">
+  {% csrf_token %}
+  <input type="text" name="nomClient" placeholder="nomClient"/>
+  <input type="text" name="prenomClient" placeholder="prenomClient"/>
+  <input type="submit" value="Chercher" name="listTransactions"/>
+</form>
