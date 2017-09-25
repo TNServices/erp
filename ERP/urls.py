@@ -35,5 +35,6 @@ urlpatterns = [
     url(r'^impressions/$', login_required(ImpressionView.as_view())),
 
     url(r'^tresorerie/$', login_required(TresorerieView.as_view())),
-    url(r'impayes/$', login_required(ImpayesView.as_view()))
+    url(r'impayes/$', login_required(ImpayesView.as_view())),
+    url(r'recettes/$', login_required(RecettesView.as_view()))
 ]

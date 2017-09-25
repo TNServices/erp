@@ -6,6 +6,8 @@ from django.views.generic import TemplateView
 from django.http import *
 from impression.models import *
 from home.models import *
+from django.db.models import *
+
 
 class TresorerieView(TemplateView):
 
@@ -18,16 +20,6 @@ class TresorerieView(TemplateView):
         else :
             return HttpResponse("T'as cru t'étais trésorier ou quoi ?")
 
-    def post(self, request):
-        if 'recettes' in request.POST:
-            mois = request.POST.get("mois")
-            recettes = Impression.objects.filter(date__startswith = mois)
-            prix = 0
-            for transaction in recettes:
-                prix += transaction.prix
-
-            return render(request, "recettes.html", {'mois': mois, 'prix' : prix})
-
 class ImpayesView(TemplateView):
     def get(self, request):
         email = request.user.username
@@ -36,7 +28,31 @@ class ImpayesView(TemplateView):
             template_name = 'impayes.html'
 
             impayes = Impression.objects.filter(estPaye = False)
-            print impayes
             return render(request, template_name, {'impayes' : impayes})
+        else :
+            return HttpResponse("T'as cru t'étais trésorier ou quoi ?")
+
+class RecettesView(TemplateView):
+    def get(self, request):
+        email = request.user.username
+        user = Personne.objects.get(email = email)
+        if user.poste == 'Trésorier' or user.poste == 'Vice Trésorier':
+            template_name = 'recettes.html'
+
+            dates = Impression.objects.values('date')
+            tab = []
+            for date in dates :
+                tab.append(str(date['date'])[:7])
+            tab = set(tab)
+
+            liste = {}
+            for mois in set(tab):
+                recettes = Impression.objects.filter(estPaye = True, date__startswith = mois)
+                somme_prix = 0
+                for recette in recettes:
+                    somme_prix += recette.prix
+                liste[mois] = somme_prix
+
+            return render(request, template_name, {'recettes' : liste})
         else :
             return HttpResponse("T'as cru t'étais trésorier ou quoi ?")

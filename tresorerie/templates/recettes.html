@@ -2,14 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>Liste des recettes</title>
     <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
   </head>
 
   <body>
 
-    <h1>Total des recettes du mois de {{mois}}</h1>
+    <h1>Total des recettes par mois</h1>
 
-    <p>Total : {{prix}} €</p>
+    <ul>
+    {% for mois, somme_prix in recettes.items %}
+        <li>
+          Mois : {{mois}}
+          </br>
+          Total recettes : {{somme_prix}}
+        </li>
+        </br>
+    {% endfor %}
+    </ul>
+
   </body>
 </html>

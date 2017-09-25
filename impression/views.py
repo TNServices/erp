@@ -6,6 +6,9 @@ from django.views.generic import TemplateView
 from django.http import *
 from models import *
 from home.models import *
+import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
 
 class ImpressionView(TemplateView):
     template_name = 'impression.html'
@@ -55,6 +58,24 @@ class ImpressionView(TemplateView):
             reliure = reliure,
             prix = prix,
             estPaye = estPaye).save()
+
+
+            msg = MIMEMultipart()
+            msg['From'] = 'impression@tnservices.fr'
+            msg['To'] = prenomClient + '.' + nomClient + '@telecomnancy.net'
+            msg['Subject'] = 'Impression TNS'
+            message = '''L'impression que vous avez demandée a été réalisée et est disponible au local.\n
+            Il vous sera demandé la somme de : ''' + str(prix) + '''€.\n Sans cela votre impression ne vous sera pas remise.'''
+            message = message.encode("utf-8")
+            msg.attach(MIMEText(message))
+            mailserver = smtplib.SMTP('smtp.gmail.com', 587)
+            mailserver.ehlo()
+            mailserver.starttls()
+            mailserver.ehlo()
+            mailserver.login('impression@tnservices.fr', 'impressionERP')
+            mailserver.sendmail('impression@tnservices.fr', prenomClient + '.' + nomClient + '@telecomnancy.net', msg.as_string())
+            mailserver.quit()
+
 
             return HttpResponse("Impression ajoutée")
 
