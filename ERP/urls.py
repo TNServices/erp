@@ -26,7 +26,6 @@ from django.contrib.auth.decorators import login_required
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', LoginView.as_view()),
-#    url(r'^home/$', login_required(TemplateView.as_view(template_name='home/index.html'))),
     url(r'^home/$', login_required(HomeView.as_view())),
     url(r'^index/$', login_required(IndexView.as_view())),
     url(r'^account/$', login_required(AccountView.as_view())),
@@ -37,4 +36,4 @@ urlpatterns = [
     url(r'^tresorerie/$', login_required(TresorerieView.as_view())),
     url(r'impayes/$', login_required(ImpayesView.as_view())),
     url(r'recettes/$', login_required(RecettesView.as_view()))
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
