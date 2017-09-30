@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+# Gère la page d'accueil des immpressions et la liste des transactions non payées d'une personne
+
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import *
 from models import *
 from home.models import *
-import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
 import os
 
 class ImpressionView(TemplateView):
     template_name = 'impression.html'
 
     def post(self, request):
+
+        # Si le post vient du bouton 'addToDatabase'
         if 'addToDatabase' in request.POST:
 
             prenomClient = request.POST.get("prenomClient", False)
@@ -27,10 +28,13 @@ class ImpressionView(TemplateView):
             reliure = request.POST.get("reliure", False)
             estPaye = request.POST.get("estPaye", False)
 
+            # Si le fournisseur n'est pas dans la table Personne (donc pas membre TNS)
             if not Personne.objects.filter(prenom = prenomFournisseur,
             nom = nomFournisseur) :
                 return HttpResponse("Erreur : Fournisseur non membre TNS")
 
+
+            # Calcul du prix : réduction sur la reliure pour les membres TNS
             prix = 0.1*float(nombrePagesCouleur) + 0.05*float(nombrePagesNB)
             if reliure:
                 if Personne.objects.filter(prenom = prenomClient,
@@ -61,48 +65,42 @@ class ImpressionView(TemplateView):
             estPaye = estPaye).save()
 
 
+            # On envoie un mail au client lui disant que sa commande est prête
             command = ''' echo "L'impression que vous avez demandée a été réalisée et est disponible au local.\n
             Il vous sera demandé la somme de ''' + str(prix) + '''€. \n
             Sans cette somme, votre impression ne vous sera pas remise.\n
             \t Cordialement, l'équipe de TNS" | mail -s "Impression TNS" ''' + prenomClient + '''.''' + nomClient + '''@telecomnancy.net'''
-            
+
             os.system(command.encode('utf-8'))
-            
-            
-        #    msg = MIMEMultipart()
-        #    msg['From'] = 'impression@tnservices.fr'
-        #    msg['To'] = prenomClient + '.' + nomClient + '@telecomnancy.net'
-        #    msg['Subject'] = 'Impression TNS'
-        #    message = '''L'impression que vous avez demandée a été réalisée et est disponible au local.\n
-        #    Il vous sera demandé la somme de : ''' + str(prix) + '''€.\n Sans cela votre impression ne vous sera pas remise.'''
-        #    message = message.encode("utf-8")
-        #    msg.attach(MIMEText(message))
-        #    mailserver = smtplib.SMTP('smtp.gmail.com', 587)
-        #    mailserver.ehlo()
-        #    mailserver.starttls()
-        #    mailserver.ehlo()
-        #    mailserver.login('impression@tnservices.fr', 'impressionERP')
-        #    mailserver.sendmail('impression@tnservices.fr', prenomClient + '.' + nomClient + '@telecomnancy.net', msg.as_string())
-        #    mailserver.quit()
 
 
             return HttpResponse("Impression ajoutée")
 
+
+        # Si le post vient du bouton 'listTransactions'
         elif 'listTransactions' in request.POST:
 
             prenomClient = request.POST.get("prenomClient", False)
             nomClient = request.POST.get("nomClient", False)
 
+            # On regarde dans la table Impression toutes les transactions de ce client
             transactions = Impression.objects.filter(prenomClient = prenomClient, nomClient = nomClient, estPaye = False)
 
+            # On renvoie 'transactions.html' avec les informations sur les transactions du client
             return render(request, "transactions.html", {'nom': nomClient, 'prenom' : prenomClient,
               'transactions' : transactions})
 
+
+        # Si le post vient du bouton 'debts' du template 'transactions.html'
         elif 'debts' in request.POST:
+
+            # On a l'identifiant de la transaction
             id = request.POST.get("id")
 
+            # On regarde dans la table Impression la transaction avec cet identifiant
             impression = Impression.objects.get(id = id)
 
+            # On modifie l'attribut 'estPaye'
             impression.estPaye = True
             impression.save()
             return HttpResponse("Impression validée")

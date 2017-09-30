@@ -1,6 +1,9 @@
 """
 WSGI config for ERP project.
 
+Fichier de lien avec le serveur nginx.
+
+
 It exposes the WSGI callable as a module-level variable named ``application``.
 
 For more information on this file, see

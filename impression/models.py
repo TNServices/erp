@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+# Table Impression qui modélise une impression ou une reliure
 class Impression(models.Model):
     date = models.DateField()
     nomClient = models.CharField(max_length = 100)

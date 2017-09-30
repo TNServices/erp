@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+# table Personne qui modélise tous les membres de TNS
+# poste représente la fonction dans l'association : Président, Chargé d'affaires ...
+
 class Personne(models.Model):
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)

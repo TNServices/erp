@@ -29,3 +29,7 @@ Personne.objects.get(pk=2).delete()
 Personne.objects.filter(nom='Maeckereel'),
 Personne.objects.filter(prenom__startswith="p")
 Personne.objects.filter(prenom__icontains="pierre")
+
+// Vider une table
+
+Personne.objects.all().delete()
