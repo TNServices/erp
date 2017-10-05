@@ -21,10 +21,9 @@ class ImpressionView(TemplateView):
 
             prenomClient = request.POST.get("prenomClient", False)
             nomClient = request.POST.get("nomClient", False)
+            prenomFournisseur = request.POST.get("prenomFournisseur")
+            nomFournisseur = request.POST.get("nomFournisseur")
 
-            user = Personne.objects.get(email = request.user.username)
-            prenomFournisseur = user.prenom
-            nomFournisseur = user.nom
             date = time.strftime('%Y-%m-%d',time.localtime())
 
             nombrePagesCouleur = request.POST.get("nombrePagesCouleur", False)
