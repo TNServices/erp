@@ -12,21 +12,27 @@
 
     <form method="post"  role="form" action="">
       {% csrf_token %}
-      <p>
-        <input type="text" name="date" placeholder="date"/>
-        Format : AAAA-MM-JJ
-      </p>
+
       <input type="text" name="nomClient" placeholder="nomClient"/>
       <input type="text" name="prenomClient" placeholder="prenomClient"/>
-      <br/>
-      <input type="text" name="nomFournisseur" placeholder="nomFournisseur"/>
-      <input type="text" name="prenomFournisseur" placeholder="prenomFournisseur"/>
       <br/>
       <input type="text" name="nombrePagesCouleur" placeholder="nombrePagesCouleur"/>
       <input type="text" name="nombrePagesNB" placeholder="nombrePagesNB"/>
       <br/>
-      <input type="text" name="reliure" placeholder="reliure"/>
-      <input type="text" name="estPaye" placeholder="estPaye"/>
+      <div class="deroul">
+        Reliure
+        <select name="reliure">
+          <option> oui
+          <option> non
+        </select>
+      </div>
+      <div class="deroul">
+        Est payé
+        <select name="estPaye">
+          <option> oui
+          <option> non
+        </select>
+      </div>
       <br/>
       <input type="submit" value="valider" name="addToDatabase"/>
     </form>

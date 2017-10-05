@@ -9,6 +9,7 @@ from django.http import *
 from models import *
 from home.models import *
 import os
+import time
 
 class ImpressionView(TemplateView):
     template_name = 'impression.html'
@@ -20,13 +21,16 @@ class ImpressionView(TemplateView):
 
             prenomClient = request.POST.get("prenomClient", False)
             nomClient = request.POST.get("nomClient", False)
-            prenomFournisseur = request.POST.get("prenomFournisseur", False)
-            nomFournisseur = request.POST.get("nomFournisseur", False)
-            date = request.POST.get("date", False)
+
+            user = Personne.objects.get(email = request.user.username)
+            prenomFournisseur = user.prenom
+            nomFournisseur = user.nom
+            date = time.strftime('%Y-%m-%d',time.localtime())
+
             nombrePagesCouleur = request.POST.get("nombrePagesCouleur", False)
             nombrePagesNB = request.POST.get("nombrePagesNB", False)
-            reliure = request.POST.get("reliure", False)
-            estPaye = request.POST.get("estPaye", False)
+            reliure = request.POST.get("reliure")
+            estPaye = request.POST.get("estPaye")
 
             # Si le fournisseur n'est pas dans la table Personne (donc pas membre TNS)
             if not Personne.objects.filter(prenom = prenomFournisseur,
