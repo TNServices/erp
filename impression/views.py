@@ -31,6 +31,7 @@ class ImpressionView(TemplateView):
             nombrePagesNB = request.POST.get("nombrePagesNB", False)
             reliure = request.POST.get("reliure")
             estPaye = request.POST.get("estPaye")
+            email = request.POST.get("email")
 
             # Si le fournisseur n'est pas dans la table Personne (donc pas membre TNS)
             if not Personne.objects.filter(prenom = prenomFournisseur,
@@ -69,13 +70,15 @@ class ImpressionView(TemplateView):
             estPaye = estPaye).save()
 
 
-            # On envoie un mail au client lui disant que sa commande est prête
-            command = ''' echo "L'impression que vous avez demandée a été réalisée et est disponible au local.\n
-            Il vous sera demandé la somme de ''' + str(prix) + '''€. \n
-            Sans cette somme, votre impression ne vous sera pas remise.\n
-            \t Cordialement, l'équipe de TNS" | mail -s "Impression TNS" ''' + prenomClient + '''.''' + nomClient + '''@telecomnancy.net'''
+            if email == 'oui':
 
-            os.system(command.encode('utf-8'))
+                # On envoie un mail au client lui disant que sa commande est prête
+                command = ''' echo "L'impression que vous avez demandée a été réalisée et est disponible au local.\n
+                Il vous sera demandé la somme de ''' + str(prix) + '''€. \n
+                Sans cette somme, votre impression ne vous sera pas remise.\n
+                \t Cordialement, l'équipe de TNS" | mail -s "Impression TNS" ''' + prenomClient + '''.''' + nomClient + '''@telecomnancy.net'''
+
+                os.system(command.encode('utf-8'))
 
 
             return HttpResponse("Impression ajoutée")
