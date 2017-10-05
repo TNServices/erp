@@ -62,8 +62,8 @@ class ImpressionView(TemplateView):
             prenomClient = prenomClient,
             nomFournisseur = nomFournisseur,
             prenomFournisseur = prenomFournisseur,
-            nombrePagesCouleur = str(nombrePagesCouleur),
-            nombrePagesNB = str(nombrePagesNB),
+            nombrePagesCouleur = nombrePagesCouleur,
+            nombrePagesNB = nombrePagesNB,
             reliure = reliure,
             prix = prix,
             estPaye = estPaye).save()
