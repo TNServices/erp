@@ -1,0 +1,5 @@
+base.html sert de base à faire des pages. On centralise alors l'import du css et
+du js si besoin. Voir home/templates/front/login.html pour un exemple d'utilisation
+des {% block _ %} de base.html.
+
+Aurelien

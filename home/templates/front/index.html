@@ -1,12 +1,7 @@
-{% load staticfiles %}
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Index</title>
-    <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
-  </head>
+{% extends "base.html" %}
+{% block head_title %}Index{% endblock %}
 
-  <body>
+{% block content %}
     <a href="/home/">Page d'accueil</a>
     <br/>
     <a href="/account/">Modification des informations du compte</a>
@@ -14,5 +9,4 @@
     <a href="/impressions/">Gestion des impressions et reliures</a>
     <br/>
     <a href="/tresorerie/">Interface administration de la trésorerie</a>
-  </body>
-</html>
+{% endblock %}

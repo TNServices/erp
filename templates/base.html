@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block head_title %}{% endblock %}</title>
+    <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/test.css" %}">
+    {% block head_css %}{% endblock %} <!-- Permet d'ajouter du css -->
+    {% block head_javascript %}{% endblock %} <!-- Permet d'ajoutter du js -->
+  </head>
+  <body id="id_body">
+    {% block content %}{% endblock %}
+  </body>
+</html>
