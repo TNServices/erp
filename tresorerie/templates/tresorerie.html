@@ -1,12 +1,7 @@
-{% load staticfiles %}
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Trésorerie</title>
-    <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
-  </head>
+{% extends "base.html" %}
+{% block head_title %}Tresorerie{% endblock %}
 
-  <body>
+{% block content %}
 
     <h1>Interface trésorerie</h1>
 
@@ -14,6 +9,5 @@
 
     <br/>
     <a href="impayes">Liste des impayés</a>
-    
-  </body>
-</html>
+
+{% endblock %}

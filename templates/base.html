@@ -9,6 +9,30 @@
     {% block head_javascript %}{% endblock %} <!-- Permet d'ajoutter du js -->
   </head>
   <body id="id_body">
-    {% block content %}{% endblock %}
+    {% block navbar %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/home/">Accueil</a></li>
+            <li><a href="/account/">Comptes</a></li>
+            <li><a href="/impressions/">Impressions</a></li>
+            <li><a href="/tresorerie/">Trésorerie</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    {% endblock %}
+    {% block content %}{% endblock %} <!-- Contenu de la page dans ce bloc -->
+    <script src="{% static "js/new-age.min.js" %}"></script>
   </body>
 </html>

@@ -1,8 +1,13 @@
-body{
-  background-color: rgb(255, 0, 0);
-}
-
 #id_body {
   background-image: none;
   background-color: #8080ff;
+}
+
+nav.menu{
+  background-color: #8989ff;
+}
+
+nav.menu ul{
+  list-style-type: none;
+  display: inline-flex;
 }
