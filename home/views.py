@@ -6,6 +6,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import *
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import TemplateView
@@ -67,14 +68,19 @@ class AccountView(TemplateView):
 
 # Affiche la page d'accueil
 class HomeView(TemplateView):
-    template_name = 'home/home.html'
+    template_name = 'front/home.html'
 
     # On cherche dans la base les informations relatives à l'utilisateur courant
     def get (self, request):
         email = None
+
         if request.user.is_authenticated():
             email = request.user.username
-        user = Personne.objects.get(email = email)
+
+        print(email);
+
+        #user = Personne.objects.get(email=email)
+        user = get_object_or_404(Personne, email=email)
 
         def get_name():
             return user.nom
@@ -90,6 +96,7 @@ class HomeView(TemplateView):
         # On retourne le template html avec les informations sur l'utilisateur
         return render(request, self.template_name, {'nom': get_name(), 'prenom' : get_firstname(),
           'email' : get_email(), 'telephone' : get_telephone(), 'poste' : get_poste()})
+
 
 
     # retourne une erreur

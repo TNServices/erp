@@ -1,38 +1,48 @@
 {% load staticfiles %}
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>{% block head_title %}{% endblock %}</title>
-    <link rel="stylesheet" type = "text/css" href="{% static "css/new-age.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/test.css" %}">
-    {% block head_css %}{% endblock %} <!-- Permet d'ajouter du css -->
-    {% block head_javascript %}{% endblock %} <!-- Permet d'ajoutter du js -->
-  </head>
-  <body id="id_body">
-    {% block navbar %}
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/home/">Accueil</a></li>
-            <li><a href="/account/">Comptes</a></li>
-            <li><a href="/impressions/">Impressions</a></li>
-            <li><a href="/tresorerie/">Trésorerie</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    {% endblock %}
-    {% block content %}{% endblock %} <!-- Contenu de la page dans ce bloc -->
-    <script src="{% static "js/new-age.min.js" %}"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>{% block head_title %}{% endblock %}</title>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}"  media="screen,projection"/>
+  {% block head_css %}{% endblock %} <!-- Permet d'ajouter du css -->
+  {% block head_javascript %}{% endblock %} <!-- Permet d'ajoutter du js -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+  {% block navbar %}
+  <nav>
+    <div class="nav-wrapper">
+      <!--<a href="#!" class="brand-logo">Logo</a>-->
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li> <a href="/home/">Accueil</a></li>
+        <li> <a href="/account/">Compte</a></li>
+        <li><a href="/impressions/">Impressions et reliures</a></li>
+        <li><a href="/tresorerie/">Tresorerie</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li> <a href="/home/">Accueil</a></li>
+        <li> <a href="/account/">Compte</a></li>
+        <li><a href="/impressions/">Impressions et reliures</a></li>
+        <li><a href="/tresorerie/">Tresorerie</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  {% endblock %}
+  {% block content %}{% endblock %} <!-- Contenu de la page dans ce bloc -->
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
+
+  <!-- Materialize init -->
+  <script>
+  $(".button-collapse").sideNav();
+  </script>
+</body>
 </html>
