@@ -1,51 +1,76 @@
 {% extends "base.html" %}
 {% block head_title %}Impression{% endblock %}
 
+{% block title %}Gestion des impressions{% endblock %}
+
 {% block content %}
 
-    <h1>Gestion des impressions et reliures</h1>
-
-    <form method="post"  role="form" action="">
-      {% csrf_token %}
-
-      <input type="text" name="nomClient" placeholder="nomClient"/>
-      <input type="text" name="prenomClient" placeholder="prenomClient"/>
-      <br/>
-      <input type="text" name="nombrePagesCouleur" placeholder="nombrePagesCouleur"/>
-      <input type="text" name="nombrePagesNB" placeholder="nombrePagesNB"/>
-      <br/>
-      <div class="deroul">
-        Reliure
+<div class="section">
+  <h2>Nouvelle impression</h2>
+  <div class="card-panel indigo lighten-5">
+  <form method="post"  role="form" action="" class="col s12">
+    {% csrf_token %}
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="text" name="nomClient" id="nomClient"/>
+        <label for="nomClient">Nom Client</label>
+      </div>
+      <div class="input-field col s6">
+        <input type="text" name="prenomClient" id="prenomClient"/>
+        <label for="prenomClient">Prenom Client</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="text" name="nombrePagesCouleur" id="nombrePagesCouleur"/>
+        <label for="nombrePagesCouleur">Nombre de pages couleurs</label>
+      </div>
+      <div class="input-field col s6">
+        <input type="text" name="nombrePagesNB" id="nombrePagesNB"/>
+        <label for="nombrePagesNB">Nombre de pages en noir et blanc</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="intput-field col s12">
         <select name="reliure">
-          <option> oui
-          <option> non
+          <option value="" disabled selected>Choose your option</option>
+          <option value="">oui</option>
+          <option value="">non</option>
         </select>
       </div>
-      <br/>
-      <div class="deroul">
-        Est payé
-        <select name="estPaye">
-          <option> oui
-          <option> non
-        </select>
-      </div>
-      <br/>
-      <div class="deroul">
-        Envoyer un email ?
-        <select name="email">
-          <option> oui
-          <option> non
-        </select>
-      </div>
-      <input type="submit" value="valider" name="addToDatabase"/>
-    </form>
-
+    </div>
     <br/>
-    <p>Valider le paiement d'une précédente impression</p>
-    <form method="post" role="form" action="">
-      {% csrf_token %}
-      <input type="text" name="nomClient" placeholder="nomClient"/>
-      <input type="text" name="prenomClient" placeholder="prenomClient"/>
-      <input type="submit" value="Chercher" name="listTransactions"/>
-    </form>
+    <div class="deroul">
+      Est payé
+      <select name="estPaye">
+        <option> oui </option>
+        <option> non </option>
+      </select>
+    </div>
+    <br/>
+    <div class="deroul">
+      Envoyer un email ?
+      <select name="email">
+        <option> oui </option>
+        <option> non </option>
+      </select>
+    </div>
+    <input type="submit" value="valider" name="addToDatabase"/>
+  </form>
+</div>
+</div>
+
+<div class="divider"></div>
+<div class="section">
+  <h2>Valider le paiement d'une précédente impression</h2>
+  <div class="card-panel indigo lighten-5">
+  <form method="post" role="form" action="">
+    {% csrf_token %}
+    <input type="text" name="nomClient" placeholder="nomClient"/>
+    <input type="text" name="prenomClient" placeholder="prenomClient"/>
+    <input type="submit" value="Chercher" name="listTransactions"/>
+  </form>
+</div>
+</div>
+
 {% endblock %}

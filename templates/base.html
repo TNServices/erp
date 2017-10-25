@@ -11,13 +11,16 @@
   {% block head_javascript %}{% endblock %} <!-- Permet d'ajoutter du js -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
+
+<body class="indigo lighten-3">
+
   {% block navbar %}
   <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper indigo">
       <!--<a href="#!" class="brand-logo">Logo</a>-->
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
+      <div class="nav-wrapper">
+      <ul class="left hide-on-med-and-down">
         <li> <a href="/home/">Accueil</a></li>
         <li> <a href="/account/">Compte</a></li>
         <li><a href="/impressions/">Impressions et reliures</a></li>
@@ -30,12 +33,21 @@
         <li><a href="/tresorerie/">Tresorerie</a></li>
       </ul>
     </div>
+  </div>
   </nav>
-
-
   {% endblock %}
-  {% block content %}{% endblock %} <!-- Contenu de la page dans ce bloc -->
 
+  <!-- Titre affichée sur la page -->
+  <div class="card-panel indigo darken-1">
+  <h1 class="white-text">
+    {% block title %}{% endblock %}
+  </h1>
+  </div>
+
+  <div class="container">
+    <!-- Contenu de la page dans ce bloc -->
+    {% block content %}{% endblock %}
+  </div>
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
@@ -43,6 +55,9 @@
   <!-- Materialize init -->
   <script>
   $(".button-collapse").sideNav();
+  $(document).ready(function() {
+   $('select').material_select();
+  });
   </script>
 </body>
 </html>

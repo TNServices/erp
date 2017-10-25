@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 {% block head_title %}Accueil{% endblock %}
 
-{% block content %}
+{% block title %}Accueil{% endblock %}
 
+{% block content %}
+<div class="card-panel">
 <p>
-  Page d'accueil de l'ERP TNS </br> </br>
   {{prenom}} {{nom}} </br>
   {{email}} </br>
   {{telephone}} </br>
   {{poste}}
 </p>
+</div>
 
 <p>
   Si vous voulez changer les informations de votre compte,

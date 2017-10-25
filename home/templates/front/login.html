@@ -1,25 +1,30 @@
 {% extends "base.html" %}
 {% block head_title %}Login{% endblock %}
 {% block navbar %}{% endblock %}
-{% block content %}
 
+{% block title %}Login de l'ERP TNS{% endblock %}
+
+{% block content %}
 <!-- LOGIN -->
-<div class="container">
+<div class="card-panel indigo lighten-5">
   <div class="row">
     <form method="post" role="form" action="" class="col s12" style="margin-top:15px;">
       {% csrf_token %}
       <div class="row">
-        <div class="input-field col s12">
-          <input type="email" name="username" placeholder="Utilisateur"/>
+        <div class="input-field col s6 offset-s3">
+          <input id="email" type="email" name="username"/>
+          <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
-          <input type="password" name="password" placeholder="Mot de passe"/>
+        <div class="input-field col s6 offset-s3">
+          <input id="password" type="password" name="password">
+          <label for="password">Mot de passe</label>
+          </input>
         </div>
       </div>
       <div class="row">
-        <div class="content col4">
+        <div class="content col s2 offset-s5">
           <button class="btn waves-effect waves-light" type="submit" name="action" value="login">
             Submit<i class="material-icons right">send</i>
           </button>
@@ -28,8 +33,6 @@
     </form>
   </div>
 </div>
-
-
 {% endblock %}
 
 <!--
