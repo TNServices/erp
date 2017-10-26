@@ -68,7 +68,7 @@ class AccountView(TemplateView):
 
 # Affiche la page d'accueil
 class HomeView(TemplateView):
-    template_name = 'front/home.html'
+    template_name = 'home/home.html'
 
     # On cherche dans la base les informations relatives à l'utilisateur courant
     def get (self, request):

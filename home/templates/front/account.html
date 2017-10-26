@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="row">
-      <div class="content col s2 offset-s5">
+      <div class="content col s3 offset-s5">
         <button class="btn waves-effect waves-light" type="submit"   name="password">
           Valider<i class="material-icons right">send</i>
         </button>
@@ -37,14 +37,26 @@
   </div>
 
 
-    <p>
-      Pour changer le numéro de téléphone :
-    </p>
+  <div class="section">
+    <h2>Pour changer le numéro de téléphone :</h2>
 
-    <form method = "post" role="form" action="">
-      {% csrf_token %}
-      <input type="text" name="Téléphone" placeholder="Téléphone"/>
-      <input type="hidden" name="telephone"/>
-      <input type="submit" value="Modifier"/>
-    </form>
+    <div class="card-panel indigo lighten-5">
+      <form method = "post" role="form" action="">
+        {% csrf_token %}
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" name="Téléphone" id="Telephone"/>
+            <label for="Telephone">Numéro de téléphone</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="conten col s3 offset-s5">
+            <button class="btn waves-effect waves-light" type="submit" name="telephone">
+              Valider<i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}
