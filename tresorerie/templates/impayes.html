@@ -1,22 +1,21 @@
 {% extends "base.html" %}
 {% block head_title %}Impayes{% endblock %}
 
-{% block content %}
-    <h1>Liste des impayés à  ce jour</h1>
+{% block title %}Listes des impayés à ce jour{% endblock %}
 
-    <ul>
+{% block content %}
+    <ul class="collection">
     {% for impaye in impayes %}
-        <li>
-          Client : {{impaye.prenomClient}} {{impaye.nomClient}}
-          Date : {{impaye.date}}
+        <li class="collection-item indigo lighten-5">
+          <b>Client :</b> {{impaye.prenomClient}} {{impaye.nomClient}}
+          <b>Date :</b> {{impaye.date}}
           </br>
-          Pages couleur : {{impaye.nombrePagesCouleur}},
-          Pages noir/blanc : {{impaye.nombrePagesNB}},
-          Reliure : {{impaye.reliure}}
+          <b>Pages couleur :</b> {{impaye.nombrePagesCouleur}},
+          <b>Pages noir/blanc :</b> {{impaye.nombrePagesNB}},
+          <b>Reliure :</b> {{impaye.reliure}}
           </br>
-          Prix à payer : {{impaye.prix}}
+          <b>Prix à payer :</b> <span class="red-text text-darken-2" >{{impaye.prix}}</span>
         </li>
-        </br>
     {% endfor %}
     </ul>
 {% endblock %}

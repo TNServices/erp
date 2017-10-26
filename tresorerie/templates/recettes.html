@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block head_title %}Recettes{% endblock %}
 
+{% block title %}Total des recettes par mois{% endblock %}
+
 {% block content %}
 
-    <h1>Total des recettes par mois</h1>
 
-    <ul>
+    <ul class="collection indigo lighten-5">
     {% for mois, somme_prix in recettes.items %}
-        <li>
-          Mois : {{mois}}
+        <li class="collection-item indigo lighten-5">
+          <b>Mois : </b>{{mois}}
           </br>
-          Total recettes : {{somme_prix}}
+          <b>Total recettes : </b>{{somme_prix}}
         </li>
-        </br>
     {% endfor %}
     </ul>
 

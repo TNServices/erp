@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% block head_title %}Tresorerie{% endblock %}
 
+{% block title %}Interface trésorerie{% endblock %}
+
 {% block content %}
 
-    <h1>Interface trésorerie</h1>
+  <div class="card-panel indigo lighten-5">
+    <h2><a href="recettes">Liste des recettes</a></h2>
+  </div>
 
-    <a href="recettes">Liste des recettes</a>
-
-    <br/>
-    <a href="impayes">Liste des impayés</a>
-
+  <div class="card-panel indigo lighten-5">
+    <h2><a href="impayes">Liste des impayés</a></h2>
+  </div>
 {% endblock %}
