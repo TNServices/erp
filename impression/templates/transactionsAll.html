@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block head_title %}Transactions{% endblock %}
+
+{% block title %}Liste des impayés{% endblock %}
+{% block content %}
+
+<ul class="collecion">
+{% for transaction in transactions %}
+    <li class="col s12 ollection-item indigo lighten-5">
+      <div class="row center">
+        <div class="col s12">
+          <h2>{{transaction.prenomClient}} {{transaction.nomClient}} : {{transaction.date}}</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s8 center ">
+          <b>Pages couleur :</b> {{transaction.nombrePagesCouleur}} |
+          <b>Pages noir/blanc :</b> {{transaction.nombrePagesNB}}
+          </br>
+          <b>Reliure :</b> {{transaction.reliure}}
+          </br>
+          <b>Prix à payer :</b> <span class="red-text text-darken-2" >{{transaction.prix}}</span>
+        </div>
+        <form method="post" role="form" action="" class"col s4 center">
+          {% csrf_token %}
+          <input type="hidden" value={{transaction.id}} name = "id"/>
+          <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="transactionsAll_debts">Valider
+              <i class="material-icons right">thumb_up</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
