@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import *
 from django.http import *
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import TemplateView
@@ -17,6 +18,18 @@ from models import *
 
 class IndexView(TemplateView):
     template_name = 'front/index.html'
+
+    def get (self, request):
+        dansLaBaseDeDonee = True;
+
+        try :
+            user = Personne.objects.get(email = request.user.username)
+        except :
+            dansLaBaseDeDonee = False;
+
+        return render(request, self.template_name, {'dansLaBaseDeDonee' : dansLaBaseDeDonee})
+
+
 
 
 # Affiche la page de modification des informations du compte

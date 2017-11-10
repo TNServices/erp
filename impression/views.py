@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import *
+from django import forms
 from models import *
 from home.models import *
 import os
@@ -85,6 +86,35 @@ class ImpressionView(TemplateView):
 
 
             return HttpResponse("Impression ajoutée")
+
+        #Si post vient du bouton 'listAllTransactions'
+        elif 'listAllTransactions' in request.POST:
+
+            #On regarde dans la table Impression toutes les impressions non payees
+            transactions= Impression.objects.filter(estPaye = False)
+
+            #On renvoie 'transactionsAll.html' avec les informations
+            return render(request, "transactionsAll.html", {'transactions':transactions})
+
+
+            #Si le post vient du bouton 'transactionsAll_debts'
+        elif 'transactionsAll_debts' in request.POST:
+
+            # On a l'identifiant de la transaction
+            id = request.POST.get("id")
+
+            # On regarde dans la table Impression la transaction avec cet identifiant
+            impression = Impression.objects.get(id = id)
+
+            # On modifie l'attribut 'estPaye'
+            impression.estPaye = True
+            impression.save()
+
+            #On regarde dans la table Impression toutes les impressions non payees
+            transactions= Impression.objects.filter(estPaye = False)
+
+            #On renvoie 'transactionsAll.html' avec les informations
+            return render(request, "transactionsAll.html", {'transactions':transactions})
 
 
         # Si le post vient du bouton 'listTransactions'
