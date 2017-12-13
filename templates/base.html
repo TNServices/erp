@@ -7,6 +7,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}"  media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "css/base.css" %}" media="all">
   {% block head_css %}{% endblock %} <!-- Permet d'ajouter du css -->
   {% block head_javascript %}{% endblock %} <!-- Permet d'ajoutter du js -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,39 +19,50 @@
   {% block navbar %}
   <nav>
     <div class="nav-wrapper indigo">
-      <!--<a href="#!" class="brand-logo">Logo</a>-->
+      <a href="#!" class="brand-logo">{% load static %}<img src="{% static "img/logo.jpg" %}" width="10%"/></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <div class="nav-wrapper">
-      <ul class="left hide-on-med-and-down">
-        <li><a href="/index">Index</a></li>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/index">Accueil</a></li>
         <li><a href="/home/">Compte</a></li>
         <li><a href="/account/">Paramètres</a></li>
         <li><a href="/impressions/">Impressions et reliures</a></li>
-        <li><a href="/tresorerie/">Tresorerie</a></li>
+        <li><a href="/tresorerie/">Trésorerie</a></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
-        <li><a href="/index">Index</a></li>
+        <li><a href="/index">Accueil</a></li>
         <li> <a href="/home/">Compte</a></li>
         <li> <a href="/account/">Paramètres</a></li>
         <li><a href="/impressions/">Impressions et reliures</a></li>
-        <li><a href="/tresorerie/">Tresorerie</a></li>
+        <li><a href="/tresorerie/">Trésorerie</a></li>
       </ul>
     </div>
   </div>
   </nav>
   {% endblock %}
 
-  <!-- Titre affichée sur la page -->
+  <!-- Titre affiché sur la page -->
   <div class="card-panel indigo darken-1">
-  <h1 class="white-text">
+  <h5 class="white-text">
     {% block title %}{% endblock %}
-  </h1>
+  </h5>
   </div>
 
   <div class="container">
     <!-- Contenu de la page dans ce bloc -->
     {% block content %}{% endblock %}
   </div>
+	{% block footer %}
+	<footer class="indigo page-footer">
+		<div class="footer-copyright">
+		<div class="container">
+		© 2017 TNServices
+		<img class="right" src="{% static "img/logo.jpg" %}" width="10%">
+		</div>
+		</div>
+	</footer>
+	
+	{% endblock %}
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
@@ -61,5 +74,8 @@
    $('select').material_select();
   });
   </script>
+  
+  
+ 
 </body>
 </html>

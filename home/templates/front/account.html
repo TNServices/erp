@@ -6,7 +6,7 @@
 {% block content %}
 
   <div class="section">
-    <h2>Changement mot de passe</h2>
+    <h5>Changement mot de passe</h5>
     <div class="card-panel indigo lighten-5">
     <form method="post"  role="form" action="">
       {% csrf_token %}
@@ -23,12 +23,12 @@
         </div>
         <div class="input-field col s6">
           <input type="password" name="newPassword2" id="NouveauMDP2"/>
-          <label for="NouveauMDP2">Confirmez le nouveau de pass</label>
+          <label for="NouveauMDP2">Confirmation du nouveau de passe</label>
         </div>
       </div>
       <div class="row">
       <div class="content col s3 offset-s5">
-        <button class="btn waves-effect waves-light" type="submit"   name="password">
+        <button class="btn waves-effect waves-light" type="submit" name="password">
           Valider<i class="material-icons right">send</i>
         </button>
       </div>
@@ -38,7 +38,7 @@
 
 
   <div class="section">
-    <h2>Pour changer le numéro de téléphone :</h2>
+    <h5>Changement numéro de téléphone:</h5>
 
     <div class="card-panel indigo lighten-5">
       <form method = "post" role="form" action="">

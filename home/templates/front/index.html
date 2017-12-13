@@ -1,32 +1,11 @@
 {% extends "base.html" %}
-{% block head_title %}Index{% endblock %}
+{% block head_title %}Accueil{% endblock %}
 
-{% block title %}Bienvenue sur l'ERP TNS{% endblock %}
+{% block title %}Bonjour  {{ user.first_name }} !{% endblock %}
 
 {% block content %}
-  {% if not dansLaBaseDeDonee %}
-  <header>
-    <div class="fixed-announcement">
-        <div class="announcement center">
-          <div class="container">Tu n'es pas enregistré dans la base de donnée, demande ton ajout à un administrateur ! </div>
-        </div>
-    </div>
-  </header>
-  {% endif %}
-  {% if dansLaBaseDeDonee %}
-  <div class="card-panel indigo lighten-5">
-    <h3><a href="/home/">Informations du compte</a></h3>
-  </div>
-  {% endif %}
-  <div class="card-panel indigo lighten-5">
-    <h3><a href="/account/">Paramètres du compte</a></h3>
-  </div>
-  {% if dansLaBaseDeDonee %}
-  <div class="card-panel indigo lighten-5">
-    <h3><a href="/impressions/">Gestion des impressions et reliures</a></h3>
-  </div>
-  <div class="card-panel indigo lighten-5">
-    <h3><a href="/tresorerie/">Interface administration de la trésorerie</a></h3>
-  </div>
-  {% endif %}
+<div class="left-align"><iframe src="https://calendar.google.com/calendar/embed?src=esialservice.com_2utidceh8bdkcn2mt63lm9u7nc%40group.calendar.google.com&ctz=Europe/Paris" style="border: 0" width="700" height="500" frameborder="0" scrolling="no"></iframe>
+</div>
+<br>
+<br>
 {% endblock %}
