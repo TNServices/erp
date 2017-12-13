@@ -7,6 +7,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}"  media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "css/base.css" %}" media="all">
   {% block head_css %}{% endblock %} <!-- Permet d'ajouter du css -->
   {% block head_javascript %}{% endblock %} <!-- Permet d'ajoutter du js -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -50,6 +52,17 @@
     <!-- Contenu de la page dans ce bloc -->
     {% block content %}{% endblock %}
   </div>
+	{% block footer %}
+	<footer class="indigo page-footer">
+		<div class="footer-copyright">
+		<div class="container">
+		© 2017 TNServices
+		<img class="right" src="{% static "img/logo.jpg" %}" width="10%">
+		</div>
+		</div>
+	</footer>
+	
+	{% endblock %}
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
@@ -61,5 +74,8 @@
    $('select').material_select();
   });
   </script>
+  
+  
+ 
 </body>
 </html>
