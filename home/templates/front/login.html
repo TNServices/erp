@@ -6,10 +6,17 @@
 
 {% block content %}
 <!-- LOGIN -->
-<div class="card-panel indigo lighten-5">
+<div class="valign-wrapper">
+<div class="card-panel">
   <div class="row">
-    <form method="post" role="form" action="" class="col s12" style="margin-top:15px;">
+    <form method="post" role="form" action="" class="col s12">
       {% csrf_token %}
+		<div class="row">
+		<div class="input-field col s6 offset-s3 center-align">
+		<img src="../../static/img/logo.jpg" width="60%"/>
+        </div>
+        </div>
+      </div>
       <div class="row">
         <div class="input-field col s6 offset-s3">
 		  <i class="material-icons prefix">person_outline</i>
@@ -27,13 +34,14 @@
       </div>
       <div class="row">
         <div class="content col s2 offset-s5">
-          <button class="btn waves-effect waves-light" type="submit" name="action" value="login">
+          <button class="btn waves-effect waves-light indigo" type="submit" name="action" value="login">
             Connexion<i class="material-icons right">send</i>
           </button>
         </div>
       </div>
     </form>
   </div>
+</div>
 </div>
 {% endblock %}
 {% block footer %}{% endblock %}
