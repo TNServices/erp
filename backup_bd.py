@@ -17,9 +17,9 @@ from email.mime.multipart import MIMEMultipart
 COMMASPACE = ', '
 
 def main():
-    sender = 'matthieu.devalle@telecomnancy.net'
-    gmail_password = 'lwjnemds.1997'
-    recipients = ['matthieu.devalle@telecomnancy.net']
+    sender = ''
+    gmail_password = ''
+    recipients = ['']
     
     # Create the enclosing (outer) message
     outer = MIMEMultipart()
