@@ -5,58 +5,87 @@
 
 {% block content %}
 
-  <div class="section">
-    <h5>Changement mot de passe</h5>
+
+
+  <ul id="tabs-swipe-demo" class="tabs indigo darken-3">
+    <li class="tab col s3"><a href="#test-swipe-1" class="active white-text" >Mon compte</a></li>
+    <li class="tab col s3"><a href="#test-swipe-2" class="active white-text">Mon mot de passe</a></li>
+    <li class="tab col s3"><a href="#test-swipe-3"class="active white-text" >Mon numéro de téléphone</a></li>
+  </ul>
+  
+  <div id="test-swipe-1" class="col s12">
+	  <div class="card-panel indigo lighten-5">
+		{{prenom}} {{nom}} </br>
+		{{email}} </br>
+		{{telephone}} </br>
+		{{poste}}
+	</div>
+ </div>
+ 
+   <div id="test-swipe-2" class="col s12">
     <div class="card-panel indigo lighten-5">
-    <form method="post"  role="form" action="">
-      {% csrf_token %}
+		    <h5>Changement du mot de passe</h5>
+		<form method="post"  role="form" action="">
+		{% csrf_token %}
+		<div class="row">
+			<div class="input-field col s6">
+				<input type="password" name="oldPassword" id="AncienMDP"/>
+				<label for="AncienMDP">Ancien mot de passe</label>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="input-field col s6">
+				<input type="password" name="newPassword1" id="NouveauMDP1"/>
+				<label for="NouveauMDP1">Nouveau mot de passe</label>
+			</div>
+			<div class="input-field col s6">
+				<input type="password" name="newPassword2" id="NouveauMDP2"/>
+				<label for="NouveauMDP2">Confirmation du nouveau de passe</label>
+			</div>
+		</div>
+   
+      
       <div class="row">
-        <div class="input-field col s6">
-          <input type="password" name="oldPassword" id="AncienMDP"/>
-          <label for="AncienMDP">Ancien mot de passe</label>
-        </div>
+		<div class="content col s3 offset-s5">
+			<button class="btn waves-effect waves-light" type="submit" name="password">
+				Valider<i class="material-icons right">send</i>
+			</button>
+		</div>
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input type="password" name="newPassword1" id="NouveauMDP1"/>
-          <label for="NouveauMDP1">Nouveau mot de passe</label>
-        </div>
-        <div class="input-field col s6">
-          <input type="password" name="newPassword2" id="NouveauMDP2"/>
-          <label for="NouveauMDP2">Confirmation du nouveau de passe</label>
-        </div>
-      </div>
-      <div class="row">
-      <div class="content col s3 offset-s5">
-        <button class="btn waves-effect waves-light" type="submit" name="password">
-          Valider<i class="material-icons right">send</i>
-        </button>
-      </div>
-      </div>
-    </form>
+		</form>
   </div>
-
-
-  <div class="section">
-    <h5>Changement numéro de téléphone:</h5>
-
-    <div class="card-panel indigo lighten-5">
-      <form method = "post" role="form" action="">
-        {% csrf_token %}
-        <div class="row">
-          <div class="input-field col s6">
-            <input type="text" name="Téléphone" id="Telephone"/>
-            <label for="Telephone">Numéro de téléphone</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="conten col s3 offset-s5">
-            <button class="btn waves-effect waves-light" type="submit" name="telephone">
-              Valider<i class="material-icons right">send</i>
-            </button>
-          </div>
-        </div>
-      </form>
+ </div>
+   <div id="test-swipe-3" class="col s12">
+    
+     <div class="card-panel indigo lighten-5">
+		<h5>Changement du numéro de téléphone:</h5>
+		<form method = "post" role="form" action="">
+			{% csrf_token %}
+			<div class="row">
+				<div class="input-field col s6">
+					<input type="text" name="Téléphone" id="Telephone"/>
+					<label for="Telephone">Numéro de téléphone</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="conten col s3 offset-s5">
+					<button class="btn waves-effect waves-light" type="submit" name="telephone">
+						Valider<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+		</form>
     </div>
   </div>
+  
+  
+
+
+
+  
+  
+
+
 {% endblock %}
+
