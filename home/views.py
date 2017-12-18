@@ -77,13 +77,7 @@ class AccountView(TemplateView):
             user.save()
 
             return HttpResponse("Numéro de Téléphone modifié")
-
-
-# Affiche la page d'accueil
-class HomeView(TemplateView):
-    template_name = 'home/home.html'
-
-    # On cherche dans la base les informations relatives à l'utilisateur courant
+	    # On cherche dans la base les informations relatives à l'utilisateur courant
     def get (self, request):
         email = None
 
@@ -109,6 +103,13 @@ class HomeView(TemplateView):
         # On retourne le template html avec les informations sur l'utilisateur
         return render(request, self.template_name, {'nom': get_name(), 'prenom' : get_firstname(),
           'email' : get_email(), 'telephone' : get_telephone(), 'poste' : get_poste()})
+
+
+# Affiche la page d'accueil
+class HomeView(TemplateView):
+    template_name = 'home/home.html'
+
+
 
 
 

@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% block head_title %}Accueil{% endblock %}
 
-{% block title %}Bonjour  {{ user.first_name }} !{% endblock %}
+{% block title %}{% endblock %}
 
 {% block content %}
-<div class="left-align"><iframe src="https://calendar.google.com/calendar/embed?src=esialservice.com_2utidceh8bdkcn2mt63lm9u7nc%40group.calendar.google.com&ctz=Europe/Paris" style="border: 0" width="700" height="500" frameborder="0" scrolling="no"></iframe>
-</div>
-<br>
-<br>
+{% block main %}
+<h5>Bonjour  {{ user.first_name }} !</h5>
+{% endblock %}
 {% endblock %}

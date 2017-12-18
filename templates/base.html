@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>{% block head_title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static "css/base.css" %}" media="all">
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}"  media="screen,projection"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="{% static "css/base.css" %}" media="all">
+  
   {% block head_css %}{% endblock %} <!-- Permet d'ajouter du css -->
   {% block head_javascript %}{% endblock %} <!-- Permet d'ajoutter du js -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,20 +20,26 @@
   {% block navbar %}
   <nav>
     <div class="nav-wrapper indigo">
-      <a href="#!" class="brand-logo">{% load static %}<img src="{% static "img/logo.jpg" %}" width="10%"/></a>
+
+      <a href="#!" class="brand-logo">{% load static %}<img src="{% static "img/texte_logo.png" %}" width="15%"/></a>
+
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <div class="nav-wrapper">
       <ul class="right hide-on-med-and-down">
         <li><a href="/index">Accueil</a></li>
+<!--
         <li><a href="/home/">Compte</a></li>
-        <li><a href="/account/">Paramètres</a></li>
+-->
+        <li><a href="/account/">Profil</a></li>
         <li><a href="/impressions/">Impressions et reliures</a></li>
         <li><a href="/tresorerie/">Trésorerie</a></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li><a href="/index">Accueil</a></li>
+<!--
         <li> <a href="/home/">Compte</a></li>
-        <li> <a href="/account/">Paramètres</a></li>
+-->
+        <li> <a href="/account/">Profil</a></li>
         <li><a href="/impressions/">Impressions et reliures</a></li>
         <li><a href="/tresorerie/">Trésorerie</a></li>
       </ul>
@@ -42,16 +49,22 @@
   {% endblock %}
 
   <!-- Titre affiché sur la page -->
+<!--
   <div class="card-panel indigo darken-1">
   <h5 class="white-text">
     {% block title %}{% endblock %}
   </h5>
   </div>
+-->
 
-  <div class="container">
+ 
     <!-- Contenu de la page dans ce bloc -->
-    {% block content %}{% endblock %}
-  </div>
+    <main>
+		{% block content %}
+		{% endblock %}
+    </main>
+
+  
 	{% block footer %}
 	<footer class="indigo page-footer">
 		<div class="footer-copyright">
@@ -75,7 +88,7 @@
   });
   </script>
   
-  
+ 
  
 </body>
 </html>
