@@ -5,8 +5,12 @@
 
 {% block content %}
 
-<div class="section">
-  <h5>Nouvelle impression</h5>
+<ul id="tabs-swipe-demo" class="tabs indigo darken-3">
+    <li class="tab col s3"><a href="#test-swipe-1" class="active white-text" >Nouvelle impression</a></li>
+    <li class="tab col s3"><a href="#test-swipe-2" class="active white-text">Rechercher</a></li>
+  </ul>
+  
+  <div id="test-swipe-1" class="col s12">
   <div class="card-panel indigo lighten-5">
   <form method="post"  role="form" action="" class="col s12">
     {% csrf_token %}
@@ -53,21 +57,22 @@
         </select>
       </div>
     </div>
-    <button class="btn waves-effect waves-light" type="submit" name="addToDatabase" value="valider">Valider
+    <button class="btn waves-effect waves-light indigo" type="submit" name="addToDatabase" value="valider">Valider
       <i class="material-icons right">send</i>
     </button>
   </form>
 </div>
-</div>
+ </div>
+ 
+   <div id="test-swipe-2" class="col s12">
 
-<div class="divider"></div>
-<div class="section">
-  <h5>Valider le paiement d'une précédente impression</h5>
+  
   <div class="card-panel indigo lighten-5">
+	<h5>Valider le paiement d'une précédente impression</h5>
     <form method="post" role="form" action="" class="col s12">
       {% csrf_token %}
       <div class="row">
-        <button class="btn waves-ffect waves-light" type="submit"
+        <button class="btn waves-ffect waves-light indigo" type="submit"
           name="listAllTransactions" value="Tous_les_impayes">Tous les impayés
           <i class="material-icons right">search</i>
         </button>
@@ -88,7 +93,7 @@
         </div>
       </div>
       <div class="row">
-        <button class="btn waves-ffect waves-light" type="submit"
+        <button class="btn waves-ffect waves-light indigo" type="submit"
         name="listTransactions" value="Chercher">Chercher
         <i class="material-icons right">search</i>
       </button>
@@ -96,6 +101,47 @@
   </form>
 </div>
 </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

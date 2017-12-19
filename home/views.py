@@ -108,6 +108,32 @@ class AccountView(TemplateView):
 # Affiche la page d'accueil
 class HomeView(TemplateView):
     template_name = 'home/home.html'
+    	    # On cherche dans la base les informations relatives à l'utilisateur courant
+    def get (self, request):
+        email = None
+
+        if request.user.is_authenticated():
+            email = request.user.username
+
+        print(email);
+
+        #user = Personne.objects.get(email=email)
+        user = get_object_or_404(Personne, email=email)
+
+        def get_name():
+            return user.nom
+        def get_firstname():
+            return user.prenom
+        def get_email():
+            return user.email
+        def get_telephone():
+            return user.telephone
+        def get_poste():
+            return user.poste
+
+        # On retourne le template html avec les informations sur l'utilisateur
+        return render(request, self.template_name, {'nom': get_name(), 'prenom' : get_firstname(),
+          'email' : get_email(), 'telephone' : get_telephone(), 'poste' : get_poste()})
 
 
 

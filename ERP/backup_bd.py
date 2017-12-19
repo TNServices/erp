@@ -24,7 +24,7 @@ msg.attach(part)    ## Attache de la pièce jointe à l'objet "message"
 
 serveur = smtplib.SMTP('smtp.gmail.com', 587)    ## Connexion au serveur sortant (en précisant son nom et son port)
 serveur.starttls()    ## Spécification de la sécurisation
-serveur.login(Fromadd, "lwjnemds.1997")    ## Authentification
+serveur.login(Fromadd, "")    ## Authentification
 texte= message.as_string().encode('utf-8')    ## Conversion de l'objet "message" en chaine de caractère et encodage en UTF-8
 serveur.sendmail(Fromadd, Toadd, texte)    ## Envoi du mail
 serveur.quit()    ## Déconnexion du serveur
