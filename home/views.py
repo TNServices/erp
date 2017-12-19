@@ -84,7 +84,7 @@ class AccountView(TemplateView):
         if request.user.is_authenticated():
             email = request.user.username
 
-        print(email);
+        #print(email);
 
         #user = Personne.objects.get(email=email)
         user = get_object_or_404(Personne, email=email)
@@ -115,7 +115,7 @@ class HomeView(TemplateView):
         if request.user.is_authenticated():
             email = request.user.username
 
-        print(email);
+        #print(email);
 
         #user = Personne.objects.get(email=email)
         user = get_object_or_404(Personne, email=email)
