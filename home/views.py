@@ -90,15 +90,15 @@ class AccountView(TemplateView):
         user = get_object_or_404(Personne, email=email)
 
         def get_name():
-            return user.nom
+            return request.user.nom
         def get_firstname():
-            return user.prenom
+            return request.user.prenom
         def get_email():
-            return user.email
+            return request.user.email
         def get_telephone():
-            return user.telephone
+            return request.user.telephone
         def get_poste():
-            return user.poste
+            return request.user.poste
 
         # On retourne le template html avec les informations sur l'utilisateur
         return render(request, self.template_name, {'nom': get_name(), 'prenom' : get_firstname(),
