@@ -7,7 +7,9 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import *
 from django import forms
-from impression.models import *
+
+from .models import *
+
 from home.models import *
 import os
 import time
@@ -35,7 +37,9 @@ class ImpressionView(TemplateView):
             email = request.POST.get("email")
 
             print(reliure)
+
             print(estPaye)
+
 
             # Si le fournisseur n'est pas dans la table Personne (donc pas membre TNS)
             if not Personne.objects.filter(prenom = prenomFournisseur,

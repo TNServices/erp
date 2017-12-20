@@ -12,7 +12,9 @@ from django.http import *
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import TemplateView
 from django.conf import settings
-from home.models import *
+
+from .models import *
+
 
 # Affiche la page d'index
 
@@ -90,15 +92,15 @@ class AccountView(TemplateView):
         user = get_object_or_404(Personne, email=email)
 
         def get_name():
-            return request.user.nom
+            return user.nom
         def get_firstname():
-            return request.user.prenom
+            return user.prenom
         def get_email():
-            return request.user.email
+            return user.email
         def get_telephone():
-            return request.user.telephone
+            return user.telephone
         def get_poste():
-            return request.user.poste
+            return user.poste
 
         # On retourne le template html avec les informations sur l'utilisateur
         return render(request, self.template_name, {'nom': get_name(), 'prenom' : get_firstname(),
@@ -112,7 +114,7 @@ class HomeView(TemplateView):
     def get (self, request):
         email = None
 
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             email = request.user.username
 
         #print(email);
