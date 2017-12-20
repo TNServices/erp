@@ -83,7 +83,7 @@ class AccountView(TemplateView):
     def get (self, request):
         email = None
 
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             email = request.user.username
 
         #print(email);
