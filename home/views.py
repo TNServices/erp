@@ -12,7 +12,9 @@ from django.http import *
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import TemplateView
 from django.conf import settings
+
 from .models import *
+
 
 # Affiche la page d'index
 
