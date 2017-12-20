@@ -92,7 +92,7 @@ class AccountView(TemplateView):
         def get_name():
             return user.nom
         def get_firstname():
-            return ruser.prenom
+            return user.prenom
         def get_email():
             return user.email
         def get_telephone():
