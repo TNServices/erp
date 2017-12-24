@@ -25,6 +25,7 @@ from home.views import *
 from impression.views import *
 from tresorerie.views import *
 from django.contrib.auth.decorators import login_required
+from django.conf.urls import include
 
 
 urlpatterns = [
@@ -34,7 +35,7 @@ urlpatterns = [
     url(r'^index/$', login_required(IndexView.as_view())),
     url(r'^account/$', login_required(AccountView.as_view())),
     url(r'^loginFail/$', logFail),
-
+	url(r'^accounts/', include('allauth.urls')),
     url(r'^impressions/$', login_required(ImpressionView.as_view())),
 
     url(r'^tresorerie/$', login_required(TresorerieView.as_view())),
