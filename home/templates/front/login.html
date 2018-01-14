@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% block head_title %}Login{% endblock %}
 {% block navbar %}{% endblock %}
-
 {% block title %}ERP TNS{% endblock %}
 
 {% block content %}
-<!-- LOGIN -->
 
 <div class="valign-wrapper">
 <div class="card-panel">
@@ -34,9 +32,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="content col s2 offset-s5">
+        <div class="center-align content col s2 offset-s5">
+		<a href="http://127.0.0.1:8000/accounts/google/login/"><img class="center-align" src="../../static/img/logo_google.png" width="60%"> </a>
           <button class="btn waves-effect waves-light indigo" type="submit" name="action" value="login">
-            Connexion<i class="material-icons right">send</i>
+            Connexion<i class="center-align material-icons right">send</i>
           </button>
         </div>
       </div>
@@ -46,7 +45,7 @@
 </div>
 {% endblock %}
 {% block footer %}{% endblock %}
-<!--
+
   </body>
 </html>
--->
+

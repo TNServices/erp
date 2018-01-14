@@ -40,8 +40,25 @@ SECRET_KEY = '^^x@9vc3^n$p4$n#cx4x=#)6s)c-gbbs*_j2tw&4j6m3n1jp)0'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+SOCIALACCOUNT_QUERY_EMAIL=True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_ADAPTER = 'ERP.account_adapter.NoNewUsersAccountAdapter'
 
-
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+            'https://www.googleapis.com/auth/userinfo.profile',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,9 +70,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'impression',
-    'tresorerie'
-]
+    'tresorerie',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
+]
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -83,7 +107,13 @@ TEMPLATES = [
         },
     },
 ]
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
 
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 WSGI_APPLICATION = 'ERP.wsgi.application'
 
 
@@ -122,8 +152,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Login config
 
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/index'
+
 
 
 # Internationalization

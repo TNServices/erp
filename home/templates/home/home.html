@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% block head_title %}Accueil{% endblock %}
 
-{% block title %}Informations du compte{% endblock %}
-
 {% block content %}
-<div class="card-panel">
+{% load account %}
+{% user_display user %}
 <p>
-  {{prenom}} {{nom}} </br>
-  {{email}} </br>
-  {{telephone}} </br>
-  {{poste}}
-</p>
-</div>
+  Page d'accueil de l'ERP TNS </br> </br>
+  <div id="test-swipe-1" class="col s12">
+	  <div class="card-panel indigo lighten-5">
+		{{user.first_name}} {{user.last_name}} </br>
+		{{user.email}} </br>
+		{{phonenumbers}}
 
-<p>
-  Si vous voulez changer les informations de votre compte,
-  <a href = '/account/'>cliquez ici</a>
+	</div>
 </p>
+
+
 
 {% endblock %}
+
