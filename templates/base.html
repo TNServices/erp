@@ -16,8 +16,6 @@
 </head>
 
 <body class="indigo lighten-3">
-Code: {{ auth_error.code }}, Error: {{ auth_error.exception }}
-
   {% block navbar %}
   <nav>
     <div class="nav-wrapper indigo">
@@ -33,6 +31,7 @@ Code: {{ auth_error.code }}, Error: {{ auth_error.exception }}
 -->
         <li><a href="/account/">Profil</a></li>
         <li><a href="/impressions/">Impressions et reliures</a></li>
+        <li><a href="/accounts/social/connections/">Google</a></li>
         <li><a href="/tresorerie/">Trésorerie</a></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
@@ -42,6 +41,7 @@ Code: {{ auth_error.code }}, Error: {{ auth_error.exception }}
 -->
         <li> <a href="/account/">Profil</a></li>
         <li><a href="/impressions/">Impressions et reliures</a></li>
+        <li><a href="/accounts/social/connections/">Google</a></li>
         <li><a href="/tresorerie/">Trésorerie</a></li>
       </ul>
     </div>

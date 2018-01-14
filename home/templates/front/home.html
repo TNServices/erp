@@ -2,13 +2,16 @@
 {% block head_title %}Accueil{% endblock %}
 
 {% block content %}
+{% userdisplay user %}
 
 <p>
   Page d'accueil de l'ERP TNS </br> </br>
-  {{prenom}} {{nom}} </br>
-  {{email}} </br>
-  {{telephone}} </br>
-  {{poste}}
+  <div id="test-swipe-1" class="col s12">
+	  <div class="card-panel indigo lighten-5">
+		{{user.firstname}} {{user.lastname}} </br>
+		{{user.email}} </br>
+
+	</div>
 </p>
 
 <p>
@@ -17,3 +20,4 @@
 </p>
 
 {% endblock %}
+
