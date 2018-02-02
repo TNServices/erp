@@ -36,9 +36,9 @@ class ImpressionView(TemplateView):
             estPaye = request.POST.get("estPaye")
             email = request.POST.get("email")
 
-            print(reliure)
+            #print(reliure)
 
-            print(estPaye)
+            #print(estPaye)
 
 
             # Si le fournisseur n'est pas dans la table Personne (donc pas membre TNS)
