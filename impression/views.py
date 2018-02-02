@@ -36,16 +36,10 @@ class ImpressionView(TemplateView):
             estPaye = request.POST.get("estPaye")
             email = request.POST.get("email")
 
-            #print(reliure)
-
-            #print(estPaye)
-
-
             # Si le fournisseur n'est pas dans la table Personne (donc pas membre TNS)
             if not Personne.objects.filter(prenom = prenomFournisseur,
             nom = nomFournisseur) :
                 return HttpResponse("Erreur : Fournisseur non membre TNS")
-
 
             # Calcul du prix : réduction sur la reliure pour les membres TNS
             prix = 0.1*float(nombrePagesCouleur) + 0.05*float(nombrePagesNB)
