@@ -71,31 +71,32 @@ class ImpressionView(TemplateView):
             prix = prix,
             estPaye = estPaye).save()
 
-
             if email == 'oui':
-
                 # On envoie un mail au client lui disant que sa commande est prête
                 command = ''' echo "L'impression que vous avez demandée a été réalisée et est disponible au local.\n
                 Il vous sera demandé la somme de ''' + str(prix) + '''€. \n
                 Sans cette somme, votre impression ne vous sera pas remise.\n
                 \t Cordialement, l'équipe de TNS" | mail -s "Impression TNS" ''' + prenomClient + '''.''' + nomClient + '''@telecomnancy.net'''
-
                 os.system(command.encode('utf-8'))
 
+            return render(request, "impressionAddedSuccess.html")
 
-            return HttpResponse("Impression ajoutée")
+        #Si post vient du bouton 'listAllTransactionsUnpaid'
+        elif 'listAllTransactionsUnpaid' in request.POST:
+            #On regarde dans la table Impression toutes les impressions non payees
+            transactions= Impression.objects.filter(estPaye = False)
+            #On renvoie 'transactionsAll.html' avec les informations
+            return render(request, "transactionsAllUnpaid.html", {'transactions':transactions})
 
         #Si post vient du bouton 'listAllTransactions'
         elif 'listAllTransactions' in request.POST:
-
             #On regarde dans la table Impression toutes les impressions non payees
-            transactions= Impression.objects.filter(estPaye = False)
-
+            transactions= Impression.objects.filter()
             #On renvoie 'transactionsAll.html' avec les informations
             return render(request, "transactionsAll.html", {'transactions':transactions})
 
 
-            #Si le post vient du bouton 'transactionsAll_debts'
+        #Si le post vient du bouton 'transactionsAllUnpaid_debts'
         elif 'transactionsAll_debts' in request.POST:
 
             # On a l'identifiant de la transaction
@@ -112,7 +113,7 @@ class ImpressionView(TemplateView):
             transactions= Impression.objects.filter(estPaye = False)
 
             #On renvoie 'transactionsAll.html' avec les informations
-            return render(request, "transactionsAll.html", {'transactions':transactions})
+            return render(request, "transactionsAllUnpaid.html", {'transactions':transactions})
 
 
         # Si le post vient du bouton 'listTransactions'
