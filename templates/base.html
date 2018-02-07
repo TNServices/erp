@@ -9,7 +9,7 @@
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}"  media="screen,projection"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+
   {% block head_css %}{% endblock %} <!-- Permet d'ajouter du css -->
   {% block head_javascript %}{% endblock %} <!-- Permet d'ajoutter du js -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -32,7 +32,7 @@
         <li><a href="/account/">Profil</a></li>
         <li><a href="/impressions/">Impressions et reliures</a></li>
         <li><a href="/accounts/social/connections/">Google</a></li>
-        <li><a href="/tresorerie/">Trésorerie</a></li>
+        <!--<li><a href="/tresorerie/">Trésorerie</a></li>-->
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li><a href="/index">Accueil</a></li>
@@ -58,14 +58,14 @@
   </div>
 -->
 
- 
+
     <!-- Contenu de la page dans ce bloc -->
     <main>
 		{% block content %}
 		{% endblock %}
     </main>
 
-  
+
 	{% block footer %}
 	<footer class="indigo page-footer">
 		<div class="footer-copyright">
@@ -75,7 +75,7 @@
 		</div>
 		</div>
 	</footer>
-	
+
 	{% endblock %}
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -88,8 +88,8 @@
    $('select').material_select();
   });
   </script>
-  
- 
- 
+
+
+
 </body>
 </html>
