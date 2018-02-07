@@ -142,4 +142,6 @@ class ImpressionView(TemplateView):
             # On modifie l'attribut 'estPaye'
             impression.estPaye = True
             impression.save()
-            return HttpResponse("Impression validée")
+
+            # On renvoie 'transactions.html' avec les informations sur les transactions du client
+            return render(request, "impression.html")
