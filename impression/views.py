@@ -128,7 +128,19 @@ class ImpressionView(TemplateView):
             # On renvoie 'transactions.html' avec les informations sur les transactions du client
             return render(request, "transactions.html", {'nom': nomClient, 'prenom' : prenomClient,
               'transactions' : transactions})
+	
+	 # Si le post vient du bouton 'listTenLastTransactions'
+        elif 'listTenLastTransactions' in request.POST:
 
+            prenomClient = request.POST.get("prenomClient", False)
+            nomClient = request.POST.get("nomClient", False)
+
+            # On regarde dans la table Impression les dix dernieres impressions
+            transactions = Impression.objects.all()
+            transactions = transactions[len(transactions)-10:]
+
+            #On renvoie 'transactionsTen.html' avec les informations
+            return render(request, "transactionsTenLast.html", {'transactions':transactions})
 
         # Si le post vient du bouton 'debts' du template 'transactions.html'
         elif 'debts' in request.POST:
