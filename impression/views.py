@@ -137,7 +137,9 @@ class ImpressionView(TemplateView):
 
             # On regarde dans la table Impression les dix dernieres impressions
             transactions = Impression.objects.all()
-            transactions = transactions[len(transactions)-10:]
+            if len(transactions)>10:
+              transactions = transactions[len(transactions)-10:]
+            #Si transactions est pas assez grand, pas besoin de le filtrer
 
             #On renvoie 'transactionsTen.html' avec les informations
             return render(request, "transactionsTenLast.html", {'transactions':transactions})
