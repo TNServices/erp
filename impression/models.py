@@ -42,4 +42,3 @@ class Backup(models.Model):
         Prix : {8} \n est payé : {9}".format(self.date, self.nomClient, self.prenomClient,
         self.nomFournisseur, self.prenomFournisseur, self.nombrePagesCouleur,
         self.nombrePagesNB, self.reliure, self.prix, self.estPaye, self.id)
-

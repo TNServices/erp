@@ -8,6 +8,8 @@ from django.views.generic import TemplateView
 from django.http import *
 from django import forms
 
+import operator
+
 from .models import *
 
 from home.models import *
@@ -85,15 +87,19 @@ class ImpressionView(TemplateView):
         elif 'listAllTransactionsUnpaid' in request.POST:
             #On regarde dans la table Impression toutes les impressions non payees
             transactions= Impression.objects.filter(estPaye = False)
+            transactions_ordonnees = sorted(transactions, key=operator.attrgetter('date'))
+            transactions_ordonnees.reverse()
             #On renvoie 'transactionsAll.html' avec les informations
-            return render(request, "transactionsAllUnpaid.html", {'transactions':transactions})
+            return render(request, "transactionsAllUnpaid.html", {'transactions':transactions_ordonnees})
 
         #Si post vient du bouton 'listAllTransactions'
         elif 'listAllTransactions' in request.POST:
             #On regarde dans la table Impression toutes les impressions non payees
             transactions= Impression.objects.filter()
+            transactions_ordonnees = sorted(transactions, key=operator.attrgetter('date'))
+            transactions_ordonnees.reverse()
             #On renvoie 'transactionsAll.html' avec les informations
-            return render(request, "transactionsAll.html", {'transactions':transactions})
+            return render(request, "transactionsAll.html", {'transactions':transactions_ordonnees})
 
 
         #Si le post vient du bouton 'transactionsAllUnpaid_debts'
@@ -111,9 +117,11 @@ class ImpressionView(TemplateView):
 
             #On regarde dans la table Impression toutes les impressions non payees
             transactions= Impression.objects.filter(estPaye = False)
+            transactions_ordonnees = sorted(transactions, key=operator.attrgetter('date'))
+            transactions_ordonnees.reverse()
 
             #On renvoie 'transactionsAll.html' avec les informations
-            return render(request, "transactionsAllUnpaid.html", {'transactions':transactions})
+            return render(request, "transactionsAllUnpaid.html", {'transactions':transactions_ordonnees})
 
 
         # Si le post vient du bouton 'listTransactions'
@@ -124,10 +132,12 @@ class ImpressionView(TemplateView):
 
             # On regarde dans la table Impression toutes les transactions de ce client
             transactions = Impression.objects.filter(prenomClient = prenomClient, nomClient = nomClient, estPaye = False)
+            transactions_ordonnees = sorted(transactions, key=operator.attrgetter('date'))
+            transactions_ordonnees.reverse()
 
             # On renvoie 'transactions.html' avec les informations sur les transactions du client
             return render(request, "transactions.html", {'nom': nomClient, 'prenom' : prenomClient,
-              'transactions' : transactions})
+              'transactions' : transactions_ordonnees})
 
 	 # Si le post vient du bouton 'listTenLastTransactions'
         elif 'listTenLastTransactions' in request.POST:
@@ -139,10 +149,13 @@ class ImpressionView(TemplateView):
             transactions = Impression.objects.all()
             if len(transactions)>10:
               transactions = transactions[len(transactions)-10:]
+
+            transactions_ordonnees = sorted(transactions, key=operator.attrgetter('date'))
+            transactions_ordonnees.reverse()
             #Si transactions est pas assez grand, pas besoin de le filtrer
 
             #On renvoie 'transactionsTen.html' avec les informations
-            return render(request, "transactionsTenLast.html", {'transactions':transactions})
+            return render(request, "transactionsTenLast.html", {'transactions':transactions_ordonnees})
 
         # Si le post vient du bouton 'debts' du template 'transactions.html'
         elif 'debts' in request.POST:
@@ -163,6 +176,16 @@ class ImpressionView(TemplateView):
         #Si le post vient du bouton delete du template 'transactionsTenLast.html'
         elif 'deleteFromTen' in request.POST:
 
+            #On recupere l'identifiant
+            id = request.POST.get("id")
+
+            #On supprimer
+            impression = Impression.objects.get(id = id)
+            impression.delete()
+
+            return render(request, "impression.html")
+
+        elif 'deleteFromAllUnpaid' in request.POST:
             #On recupere l'identifiant
             id = request.POST.get("id")
 

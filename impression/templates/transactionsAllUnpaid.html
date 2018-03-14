@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s8 center ">
+        <div class="col s2 center offset-s3">
           <b>Pages couleur :</b> {{transaction.nombrePagesCouleur}} |
           <b>Pages noir/blanc :</b> {{transaction.nombrePagesNB}}
           </br>
@@ -21,7 +21,14 @@
           </br>
           <b>Prix à payer :</b> <span class="red-text text-darken-2" >{{transaction.prix}}</span>
         </div>
-        <form method="post" role="form" action="" class"col s4 center">
+        <form method="post"  role="form" action="" class="col s2 center">
+          {% csrf_token %}
+          <input type="hidden" value={{transaction.id}} name = "id"/>
+          <button class="btn waves-effect waves-light red" type="submit" name="deleteFromAllUnpaid" value="deleteFromAllUnpaid">Supprimer
+            <i class="material-icons right">delete</i>
+          </button>
+        </form>
+        <form method="post" role="form" action="" class"col s2 center">
           {% csrf_token %}
           <input type="hidden" value={{transaction.id}} name = "id"/>
           <div class="row">
