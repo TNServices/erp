@@ -128,7 +128,7 @@ class ImpressionView(TemplateView):
             # On renvoie 'transactions.html' avec les informations sur les transactions du client
             return render(request, "transactions.html", {'nom': nomClient, 'prenom' : prenomClient,
               'transactions' : transactions})
-	
+
 	 # Si le post vient du bouton 'listTenLastTransactions'
         elif 'listTenLastTransactions' in request.POST:
 
@@ -158,4 +158,16 @@ class ImpressionView(TemplateView):
             impression.save()
 
             # On renvoie 'transactions.html' avec les informations sur les transactions du client
+            return render(request, "impression.html")
+
+        #Si le post vient du bouton delete du template 'transactionsTenLast.html'
+        elif 'deleteFromTen' in request.POST:
+
+            #On recupere l'identifiant
+            id = request.POST.get("id")
+
+            #On supprimer
+            impression = Impression.objects.get(id = id)
+            impression.delete()
+
             return render(request, "impression.html")

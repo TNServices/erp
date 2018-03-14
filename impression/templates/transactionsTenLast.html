@@ -30,6 +30,15 @@
           {% endif %}
         </div>
       </div>
+      <div class="row">
+        <form method="post"  role="form" action="" class="col s12 center">
+          {% csrf_token %}
+          <input type="hidden" value={{transaction.id}} name = "id"/>
+          <button class="btn waves-effect waves-light red" type="submit" name="deleteFromTen" value="deleteFromTen">Supprimer
+            <i class="material-icons right">delete</i>
+          </button>
+        </form>
+      </div>
     </li>
 {% endfor %}
 </ul>
