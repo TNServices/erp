@@ -7,4 +7,7 @@ from .models import *
 
 
 # Permet d'administrer la table Impression depuis l'interface d'administration
+
 admin.site.register(Impression)
+
+#admin.site.register(Impression)

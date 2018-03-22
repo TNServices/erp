@@ -23,6 +23,9 @@ class Impression(models.Model):
         self.nomFournisseur, self.prenomFournisseur, self.nombrePagesCouleur,
         self.nombrePagesNB, self.reliure, self.prix, self.estPaye, self.id)
 
+    def __str__(self):
+        return "{0} {1} {2}".format(self.nomClient, self.prenomClient, self.date)
+
 
 class Backup(models.Model):
     date = models.DateField()

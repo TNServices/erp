@@ -9,6 +9,7 @@ from django.http import *
 from django import forms
 
 import operator
+import csv
 
 from .models import *
 
@@ -41,7 +42,7 @@ class ImpressionView(TemplateView):
             transactions_ordonnees.reverse()
             #On renvoie 'transactionsAll.html' avec les informations
             return transactions_ordonnees
-            
+
 
         # Si le post vient du bouton 'addToDatabase'
         if 'addToDatabase' in request.POST:
@@ -151,7 +152,7 @@ class ImpressionView(TemplateView):
 
 	    # Si le post vient du bouton 'listTenLastTransactions'
         elif 'listTenLastTransactions' in request.POST:
-            transactions_ordonnees = getDixDernieresTransactions()    
+            transactions_ordonnees = getDixDernieresTransactions()
             #On renvoie 'transactionsTen.html' avec les informations
             return render(request, "transactionsTenLast.html", {'transactions':transactions_ordonnees})
 
@@ -188,3 +189,27 @@ class ImpressionView(TemplateView):
             #On renvoie 'transactionsAllUnpaid.html'
             transactions_ordonnees = getUnpaidTransactions()
             return render(request, "transactionsAllUnpaid.html", {'transactions':transactions_ordonnees})
+
+        elif 'listePersonnes' in request.POST:
+            #On recupere la liste des personnes
+            listePersonnes = Personne.objects.filter()
+            listePersonnes = sorted(listePersonnes, key=operator.attrgetter('nom'))
+            return render(request, "listepersonnes.html", {'personnes':listePersonnes})
+
+        elif 'csvPourLaCompta' in request.POST:
+            #Creer la réponse http
+            date=request.POST.get("moisCSV")
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachement; filename="{0}.csv"'.format(date)
+            #Writer
+            writer = csv.writer(response)
+            impressions = Impression.objects.filter()
+            impressions = sorted(impressions, key=operator.attrgetter('date'))
+            total = 0;
+            writer.writerow(['Date','Nom','Prénom','Prix (euros)'])
+            for impression in impressions:
+                if str(impression.date).find(date)==0:
+                    writer.writerow([impression.date, impression.nomClient, impression.prenomClient, impression.prix])
+                    total+=impression.prix;
+            writer.writerow(['','','Total (euros)',total])
+            return response

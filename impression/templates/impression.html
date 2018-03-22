@@ -84,6 +84,10 @@
           name="listTenLastTransactions" value="Dix_dernières_impressions">Dix dernières impressions
           <i class="material-icons right">search</i>
         </button>
+        <button class="btn waves-ffect waves-light indigo" type="submit"
+                name="listePersonnes">Liste des adhérents
+              <i class="material-icons right">search</i>
+          </button>
       </div>
     </form>
   </div>
@@ -108,11 +112,28 @@
     </div>
   </form>
 </div>
+<div class="card-panel indigo lighten-5">
+  <h4>CSV</h4>
+  <form method="post" role="form" action="" class="col s12">
+    {% csrf_token %}
+    <div class="row">
+      <p><i>Choissisez une date, seul le mois et l'année de la date sont utilisées pour former le csv.</i></p>
+      <div class="input-field col s6">
+        <input type="text" class="datepicker" name="moisCSV" id="moisCSV" data-value="today"/>
+        <label for="moisCSV">Choix mois du CSV</label>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn waves-ffect waves-light indigo" type="submit"
+      name="csvPourLaCompta" value="Chercher">Télécharger
+      <i class="material-icons right">system_update_alt</i>
+    </button>
+  </div>
+</form>
+</div>
+
 </div>
   </div>
-
-
-
-
-
+{% endblock %}
+{% block endjs %}
 {% endblock %}

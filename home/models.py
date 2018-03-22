@@ -15,3 +15,6 @@ class Personne(models.Model):
 
     def __unicode__(self):
         return "{1} {0} \n {2} \n {3} \n {4}".format(self.nom, self.prenom, self.email, self.telephone, self.poste)
+
+    def __str__(self):
+        return "{0} {1} : {2}".format(self.nom, self.prenom, self.email)

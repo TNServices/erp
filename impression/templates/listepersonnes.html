@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block head_title %}Impression{% endblock %}
+
+{% block title %}Gestion des impressions{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+<table class="col s6 center bordered indigo lighten-4">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+     </tr>
+    </thead>
+  <tbody>
+{% for personne in personnes %}
+  <tr>
+    <td>{{personne.nom}}</td>
+    <td>{{personne.prenom}}</td>
+  </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}
