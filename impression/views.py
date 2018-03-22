@@ -56,10 +56,14 @@ class ImpressionView(TemplateView):
             date = time.strftime('%Y-%m-%d',time.localtime())
 
             nombrePagesCouleur = request.POST.get("nombrePagesCouleur", False)
-            nombrePagesNB = request.POST.get("nombrePagesNB", False)
+            nombrePagesNB = float(request.POST.get("nombrePagesTotal", False)) - float(nombrePagesCouleur)
+            if (nombrePagesNB < 0):
+                return HttpResponse("Erreur : Nombre de pages total < Nombre de pages en couleur")
             reliure = request.POST.get("reliure")
             estPaye = request.POST.get("estPaye")
-            email = request.POST.get("email")
+            email = 'non'
+            nombre = request.POST.get("nombre")
+
 
             # Si le fournisseur n'est pas dans la table Personne (donc pas membre TNS)
             if not Personne.objects.filter(prenom = prenomFournisseur,
@@ -85,16 +89,30 @@ class ImpressionView(TemplateView):
             else:
                 estPaye = False
 
-            Impression(date = date,
-            nomClient = nomClient,
-            prenomClient = prenomClient,
-            nomFournisseur = nomFournisseur,
-            prenomFournisseur = prenomFournisseur,
-            nombrePagesCouleur = nombrePagesCouleur,
-            nombrePagesNB = nombrePagesNB,
-            reliure = reliure,
-            prix = prix,
-            estPaye = estPaye).save()
+            try :
+                for i in range(int(nombre)):
+                    Impression(date = date,
+                    nomClient = nomClient,
+                    prenomClient = prenomClient,
+                    nomFournisseur = nomFournisseur,
+                    prenomFournisseur = prenomFournisseur,
+                    nombrePagesCouleur = nombrePagesCouleur,
+                    nombrePagesNB = nombrePagesNB,
+                    reliure = reliure,
+                    prix = prix,
+                    estPaye = estPaye).save()
+            except:
+                Impression(date = date,
+                nomClient = nomClient,
+                prenomClient = prenomClient,
+                nomFournisseur = nomFournisseur,
+                prenomFournisseur = prenomFournisseur,
+                nombrePagesCouleur = nombrePagesCouleur,
+                nombrePagesNB = nombrePagesNB,
+                reliure = reliure,
+                prix = prix,
+                estPaye = estPaye).save()
+
 
             if email == 'oui':
                 # On envoie un mail au client lui disant que sa commande est prête

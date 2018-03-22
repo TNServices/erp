@@ -26,35 +26,41 @@
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input type="text" name="nombrePagesCouleur" id="nombrePagesCouleur"/>
+        <input type="number" data-error="wrong"  name="nombrePagesCouleur" id="nombrePagesCouleur"/>
         <label for="nombrePagesCouleur">Nombre de pages couleurs</label>
       </div>
       <div class="input-field col s6">
-        <input type="text" name="nombrePagesNB" id="nombrePagesNB"/>
-        <label for="nombrePagesNB">Nombre de pages en noir et blanc</label>
+        <input type="number" data-error="wrong" name="nombrePagesTotal" id="nombrePagesTotal"/>
+        <label for="nombrePagesNB">Nombre total de pages (plus de calculs :D)</label>
       </div>
     </div>
     <div class="row">
       <div class="intput-field col s4">
-        <select name="reliure">
+        <select name="reliure" data-error="wrong">
           <option value="" disabled selected>Reliure ?</option>
           <option value="oui">oui</option>
           <option value="non">non</option>
         </select>
+        <label>Reliure</label>
       </div>
       <div class="intput-field col s4">
-        <select name="estPaye">
+        <select name="estPaye" data-error="wrong">
           <option value="" disabled selected>Payé ?</option>
           <option value="oui">oui</option>
           <option value="non">non</option>
         </select>
+        <label>Payé</label>
       </div>
       <div class="intput-field col s4">
-        <select name="email">
-          <option value="" disabled selected>Email ?</option>
-          <option value="oui">oui</option>
-          <option value="non">non</option>
+        <select name="nombre" data-error="wrong">
+          <option value="" disabled>Nombre ?</option>
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
+        <label>Nombre de fois</label>
       </div>
     </div>
     <button class="btn waves-effect waves-light indigo" type="submit" name="addToDatabase" value="valider">Valider
